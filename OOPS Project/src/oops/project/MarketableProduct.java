@@ -2,6 +2,7 @@
 
 package oops.project;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface MarketableProduct{
@@ -13,10 +14,11 @@ public interface MarketableProduct{
 
 
 class Product implements MarketableProduct,java.io.Serializable
-{
+{   
+    private String category;
     private static final long serialVersionUID = 1L;
     private String ID;
-    private final int name;
+    private int name;
     private int price;
     private int model;
     private List<String> features;
@@ -26,7 +28,9 @@ class Product implements MarketableProduct,java.io.Serializable
     private int inPrice;
     private int outPrice;
 
-    public Product(String ID,int name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
+    public Product(String category,String ID,int name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
+        
+        this.category=category;
         this.ID=ID;
         this.name = name;
         this.price = price;
@@ -37,6 +41,17 @@ class Product implements MarketableProduct,java.io.Serializable
         this.volumesSold = volumesSold;
         this.inPrice = inPrice;
         this.outPrice = outPrice;
+    }
+
+    public Product(String Category) {
+        
+        this.category=category;
+        features= new ArrayList<>();  
+      
+    }
+
+    public Product() {
+      features= new ArrayList<>();    
     }
 
     
@@ -82,6 +97,12 @@ class Product implements MarketableProduct,java.io.Serializable
      */
     public void setFeatures(List<String> features) {
         this.features = features;
+    }
+    
+    public void addFeatures(String feature)
+    {
+    features.add(feature);
+    
     }
 
     /**

@@ -12,21 +12,28 @@ class SAAS extends Product implements Software
 {
     private static final long serialVersionUID = 1L;
 
-    public SAAS(String ID, int name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
-        super(ID, name, price, model, features, volumesAvailable, totalVolumes, volumesSold, inPrice, outPrice);
+    public SAAS(String category, String ID, int name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
+        super(category, ID, name, price, model, features, volumesAvailable, totalVolumes, volumesSold, inPrice, outPrice);
     }
 
-    
+    SAAS() {
+        super();
+    }
+ 
 }
 
 class OS extends Product implements Software
 {
     private static final long serialVersionUID = 1L;
 
-    public OS(String ID, int name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
-        super(ID, name, price, model, features, volumesAvailable, totalVolumes, volumesSold, inPrice, outPrice);
+    public OS(String category, String ID, int name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
+        super(category, ID, name, price, model, features, volumesAvailable, totalVolumes, volumesSold, inPrice, outPrice);
     }
 
+   OS()
+   {
+   super();
+   }
 
 
 }
@@ -35,22 +42,27 @@ class OpenSource extends Product implements Software
 {
     private static final long serialVersionUID = 1L;
 
-    public OpenSource(String ID, int name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
-        super(ID, name, price, model, features, volumesAvailable, totalVolumes, volumesSold, inPrice, outPrice);
+    public OpenSource(String category, String ID, int name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
+        super(category, ID, name, price, model, features, volumesAvailable, totalVolumes, volumesSold, inPrice, outPrice);
     }
 
-   
-   
+    OpenSource() {
+     super();
+    }
 
 }
 
 class PAAS extends Product implements Software
 {
+    private static final long serialVersionUID = 1L;
 
-    public PAAS(String ID, int name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
-        super(ID, name, price, model, features, volumesAvailable, totalVolumes, volumesSold, inPrice, outPrice);
+    public PAAS(String category, String ID, int name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
+        super(category, ID, name, price, model, features, volumesAvailable, totalVolumes, volumesSold, inPrice, outPrice);
     }
 
+    PAAS() {
+      super();
+    }
 
-
+   
 }

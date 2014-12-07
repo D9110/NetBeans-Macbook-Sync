@@ -13,6 +13,10 @@ public class Employee implements java.io.Serializable {
     private String phoneNo;
     private List<String> positionsHeld;
 
+    public Employee() {
+        
+    }
+    
     
     public Employee(String ID,String name, String DOB, String Address, String phoneNo, List<String> positionsHeld) {
         this.ID=ID;

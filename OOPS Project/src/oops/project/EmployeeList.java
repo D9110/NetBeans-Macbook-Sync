@@ -8,7 +8,7 @@ import java.util.List;
 
 public class EmployeeList implements Iterable<Employee> {
 
-    List<Employee> employeeList;
+    private List<Employee> employeeList;
     
     @Override
     public Iterator<Employee> iterator() {
@@ -22,22 +22,17 @@ public class EmployeeList implements Iterable<Employee> {
 
     
     
-    public EmployeeList(Employee employee) {
-        
-        
-        
-    }
-    
-    public EmployeeList(String ID,String name, String DOB, String Address, String phoneNo, List<String> positionsHeld)
-    {
-    employeeList.add(new Employee(ID,name,DOB,Address,phoneNo,positionsHeld));
-    }
-    
     
     void addEmployee(String ID,String name, String DOB, String Address, String phoneNo, List<String> positionsHeld)
     {
         employeeList.add(new Employee(ID,name,DOB,Address,phoneNo,positionsHeld));
     }
+
+    public List<Employee> getEmployeeList() {
+        return employeeList;
+    }
+    
+    
     
     
 }

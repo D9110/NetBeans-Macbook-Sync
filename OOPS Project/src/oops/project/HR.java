@@ -40,12 +40,12 @@ class HumanResource implements HR
 
     @Override
     public void setEmployeeInfo(int EmployeeID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      
     }
 
     @Override
     public void getEmployeeInfo(int EmployeeID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
 
     
