@@ -24,7 +24,7 @@ class SAAS extends Product implements Software
     }
 
     SAAS() {
-        super();
+        super(); ProductList.getInstance().addProduct(this);
     }
 
     public int getMinServerCores() {
@@ -65,7 +65,7 @@ class OS extends Product implements Software
 
    OS()
    {
-   super();
+   super(); ProductList.getInstance().addProduct(this);
    }
 
     public String getCodename() {
@@ -140,7 +140,7 @@ class OpenSource extends Product implements Software
     }
 
     OpenSource() {
-     super();
+     super(); ProductList.getInstance().addProduct(this);
     }
 
     public List<String> getContributors() {
@@ -179,7 +179,7 @@ class PAAS extends Product implements Software
     }
 
     PAAS() {
-      super();
+      super(); ProductList.getInstance().addProduct(this);
     }
 
    

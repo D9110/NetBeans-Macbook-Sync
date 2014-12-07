@@ -1,8 +1,6 @@
 
 package oops.project;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
                                                             //ADD EMPLOYEE DEPARTMENT WITH HASH MAP
 public abstract class Employee implements java.io.Serializable {
@@ -18,6 +16,8 @@ public abstract class Employee implements java.io.Serializable {
     public Employee() {
         
        positionsHeld=new Stack<>();
+       
+      
         
     }
     
@@ -29,6 +29,9 @@ public abstract class Employee implements java.io.Serializable {
         this.Address = Address;
         this.phoneNo = phoneNo;
         this.positionsHeld = positionsHeld;
+    
+        EmployeeList.getInstance().addEmployee(this);
+    
     }
 
     public Stack<String> getPositionsHeld() {
@@ -42,6 +45,12 @@ public abstract class Employee implements java.io.Serializable {
     public void setPostionsHeld(String position)
     {
         positionsHeld.add(position);
+    }
+    
+    public String getPositionHeld()
+    {
+    
+    return positionsHeld.peek();
     }
 
     public String getName() {
@@ -86,8 +95,18 @@ class SoftwareEmployee extends Employee
 {
     private static final long serialVersionUID = 1L;
 
+    SoftwareEmployeePositions softwareEmployeePositions=SoftwareEmployeePositions.getInstance();
+    
     public SoftwareEmployee() {
         super();
+        EmployeeList.getInstance().addEmployee(this);
+    }
+    
+    public int getEmployeeSalary()
+    {
+    
+        return softwareEmployeePositions.softwareEmployeePositionsSalary.get(softwareEmployeePositions.softwareEmployeePositions.indexOf(this.getPositionHeld()));
+    
     }
 
 
@@ -98,8 +117,17 @@ class HardwareEmployee extends Employee
 {
     private static final long serialVersionUID = 1L;
 
+    HardwareEmployeePositions hardwareEmployeePositions=HardwareEmployeePositions.getInstance();
+    
     public HardwareEmployee() {
         super();
+        EmployeeList.getInstance().addEmployee(this);
+    }
+    public int getEmployeeSalary()
+    {
+    
+        return hardwareEmployeePositions.hardwareEmployeePositionsSalary.get(hardwareEmployeePositions.hardwareEmployeePositions.indexOf(this.getPositionHeld()));
+    
     }
 
 
@@ -110,9 +138,18 @@ class ManagementEmployee extends Employee
 {
     private static final long serialVersionUID = 1L;
 
+    ManagementEmployeePositons managementEmployeePositions=ManagementEmployeePositions.getInstance();
+    
     public ManagementEmployee() {
         super();
+        EmployeeList.getInstance().addEmployee(this);
     }
-
-
+ 
+     public int getEmployeeSalary()
+    {
+    
+        return managementEmployeePositions.hmanagementEmployeePositionsSalary.get(managementEmployeePositions.managementEmployeePositions.indexOf(this.getPositionHeld()));
+    
+    }
+    
 }

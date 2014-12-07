@@ -23,10 +23,8 @@ public class ProductFactory extends AbstractProductEmployeeFactory
     }
 
     @Override
-    Employee getEmployee() {
+    Employee getEmployee(String employeeType) {
        return null;
     }
-
-   
 
 }

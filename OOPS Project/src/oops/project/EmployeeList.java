@@ -16,7 +16,7 @@ public class EmployeeList implements Iterable<Employee> {
         return employeeList.iterator();
     }
 
-    public EmployeeList() {
+    private EmployeeList() {
         
         employeeList=new ArrayList<>();
     }
@@ -27,16 +27,23 @@ public class EmployeeList implements Iterable<Employee> {
         employeeList.add(new Employee(ID,name,DOB,Address,phoneNo,positionsHeld) {});
     }
 
-    public List<Employee> getEmployeeList() {
-        return employeeList;
-    }
-    
-    void addEmployee(Employee employee)
+       void addEmployee(Employee employee)
     {
     employeeList.add(employee);
     }
     
+    private List<Employee> getEmployeeList() {
+        return employeeList;
+    }
     
+
+        public static EmployeeList getInstance() {
+        return EmployeeListHolder.INSTANCE;
+    }
     
+    private static class EmployeeListHolder {
+
+        private static final EmployeeList INSTANCE = new EmployeeList();
+    }
     
 }

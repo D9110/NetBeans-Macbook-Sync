@@ -23,7 +23,7 @@ class Tablets extends Product implements Hardware{
     }
 
     Tablets() {
-     super();
+     super(); ProductList.getInstance().addProduct(this);
     }
 
     public String getScreenSize() {
@@ -101,7 +101,7 @@ class Phones extends Product implements Hardware{
     
     
     Phones() {
-     super(); 
+     super();  ProductList.getInstance().addProduct(this);
     } 
 
     public String getScreenSize() {
@@ -168,7 +168,7 @@ class Laptops extends Product implements Hardware{
     }
 
     Laptops() {
-      super();  
+      super();  ProductList.getInstance().addProduct(this); 
     }
 
     public String getProcessor() {
@@ -249,7 +249,7 @@ class Acessories extends Product implements Hardware{
     }
 
     Acessories() {
-     super();
+     super(); ProductList.getInstance().addProduct(this);
     }
 
     @Override

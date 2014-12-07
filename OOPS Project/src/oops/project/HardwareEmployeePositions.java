@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public final class HardwareEmployeePostions {
+public final class HardwareEmployeePositions {
    
    List <String> hardwareEmployeePositions;
    List <Integer> hardwareEmployeePositionsSalary;
     
   
-   private HardwareEmployeePostions()
+   private HardwareEmployeePositions()
            {
               hardwareEmployeePositions=new ArrayList<>(); 
               hardwareEmployeePositionsSalary=new ArrayList<>();
@@ -36,13 +36,13 @@ public final class HardwareEmployeePostions {
            }
    
    
-      public static HardwareEmployeePostions getInstance() {
-        return NewHardwareEmployeePostionsHolder.INSTANCE;
+      public static HardwareEmployeePositions getInstance() {
+        return NewHardwareEmployeePositionsHolder.INSTANCE;
     }
     
-    private static class NewHardwareEmployeePostionsHolder {
+    private static class NewHardwareEmployeePositionsHolder {
 
-        private static final HardwareEmployeePostions INSTANCE = new HardwareEmployeePostions();
+        private static final HardwareEmployeePositions INSTANCE = new HardwareEmployeePositions();
     }
    
 

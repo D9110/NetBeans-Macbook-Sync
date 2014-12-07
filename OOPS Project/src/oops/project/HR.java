@@ -39,9 +39,9 @@ abstract class HumanResource implements HR {
     @Override
     public void doPromotions(List<Employee> employeeList, List<Boolean> promotionStatus) {
 
-        HardwareEmployeePostions hardwareEmployeePostions = HardwareEmployeePostions.getInstance();
+        HardwareEmployeePositions hardwareEmployeePostions = HardwareEmployeePositions.getInstance();
         ManagementEmployeePositons managementEmployeePositons = ManagementEmployeePositons.getInstance();
-        SoftwareEmployeePostions softwareEmployeePostions = SoftwareEmployeePostions.getInstance();
+        SoftwareEmployeePositions softwareEmployeePostions = SoftwareEmployeePositions.getInstance();
 
         Iterator<Employee> employeeIterator = employeeList.iterator();
 

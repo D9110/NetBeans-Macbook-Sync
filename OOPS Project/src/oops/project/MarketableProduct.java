@@ -41,17 +41,21 @@ class Product implements MarketableProduct,java.io.Serializable
         this.volumesSold = volumesSold;
         this.inPrice = inPrice;
         this.outPrice = outPrice;
+        
+        ProductList.getInstance().addProduct(this);
     }
 
     public Product(String Category) {
         
         this.category=category;
         features= new ArrayList<>();  
+        ProductList.getInstance().addProduct(this);
       
     }
 
     public Product() {
-      features= new ArrayList<>();    
+      features= new ArrayList<>(); 
+     
     }
 
     
@@ -177,18 +181,56 @@ class Product implements MarketableProduct,java.io.Serializable
 
     @Override
     public void sell() {
+        
+        if(volumesAvailable>1)
+        volumesAvailable--;
+        volumesSold++;
        
     }
 
     @Override
     public void buy() {
         
+        volumesAvailable++;
+        totalVolumes++;
     }
 
     @Override
     public void takeBack() {
+       
+        volumesAvailable++;
+        volumesSold--;
       
     }
     
+    
+    public void sell(int volume) {
+       
+        if(volumesAvailable>volume)
+        {
+        volumesAvailable-=volume;
+        volumesSold+=volume;
+          
+        }      
+    }
+
+    public void buy(int volume) {
+
+        volumesAvailable+=volume;
+        totalVolumes+=volume;
+ 
+    }
+
+    
+    public void takeBack(int volume) {
+        
+        if(volumesAvailable>volume)
+        {
+        volumesAvailable+=volume;
+        volumesSold-=volume;
+          
+        }  
+      
+    }
     
 }

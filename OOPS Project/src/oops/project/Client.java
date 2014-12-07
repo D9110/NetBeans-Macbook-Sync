@@ -11,7 +11,7 @@ public class Client {
       AbstractProductEmployeeFactory apefe=FactoryProducer.getFactory("Employee");
       AbstractProductEmployeeFactory apefp=FactoryProducer.getFactory("Product");
       
-      Employee e=apefe.getEmployee();
+      Employee e=apefe.getEmployee("SoftwareEmployee");
       Product  p=apefp.getProduct("Tablets");
      
         

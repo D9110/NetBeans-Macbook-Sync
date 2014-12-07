@@ -7,43 +7,36 @@ import java.util.List;
 
 public class ProductList implements Iterable<Product> {
 
-    List<Product> productList;
+    private List<Product> productList;
     
     @Override
     public Iterator<Product> iterator() {
      return productList.iterator();
     }
 
-    public ProductList() {
+    private ProductList() {
         productList=new ArrayList<>();
-    }
+    } 
     
-    void addHardware(String productType)
+    public void addProduct(Product product)
     {
     
-    Product addedProduct = null;    
-    if("Phones".equals(productType));
-    if("Laptops".equals(productType));
-    if("Tablets".equals(productType));
-    if("Acessories".equals(productType));
+    productList.add(product);
     
-    productList.add(addedProduct);
+    }        
     
+     private List<Product> getProductList() {
+        return productList;
+    }   
+     
+    public static ProductList getInstance() {
+        return ProductListHolder.INSTANCE;
     }
     
-    void addSoftware(String productType)
-    {
-        
-       Product addedProduct = null;     
-    if("SAAS".equals(productType));
-    if("OS".equals(productType));
-    if("Open Source".equals(productType));
-    if("PAAS".equals(productType));
-    
-    productList.add(addedProduct);
-    
+    private static class ProductListHolder {
+
+        private static final ProductList INSTANCE = new ProductList();
     }
     
-   
-    
+
 }

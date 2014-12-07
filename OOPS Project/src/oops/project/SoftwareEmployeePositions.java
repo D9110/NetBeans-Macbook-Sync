@@ -2,23 +2,19 @@
 package oops.project;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 
-public final class SoftwareEmployeePostions {
+public final class SoftwareEmployeePositions {
    
    List <String> softwareEmployeePositions;
    List <Integer> softwareEmployeePositionsSalary;
     
   
-   private SoftwareEmployeePostions()
+   private SoftwareEmployeePositions()
            {
               softwareEmployeePositions=new ArrayList<>(); 
               softwareEmployeePositionsSalary=new ArrayList<>();
-              
-              
               
               softwareEmployeePositions.add("BeginnerSoftwareDeveloper");
               softwareEmployeePositionsSalary.add(10000);
@@ -38,13 +34,13 @@ public final class SoftwareEmployeePostions {
            }
    
    
-      public static SoftwareEmployeePostions getInstance() {
-        return NewSoftwareEmployeePostionsHolder.INSTANCE;
+      public static SoftwareEmployeePositions getInstance() {
+        return NewSoftwareEmployeePositionsHolder.INSTANCE;
     }
     
-    private static class NewSoftwareEmployeePostionsHolder {
+    private static class NewSoftwareEmployeePositionsHolder {
 
-        private static final SoftwareEmployeePostions INSTANCE = new SoftwareEmployeePostions();
+        private static final SoftwareEmployeePositions INSTANCE = new SoftwareEmployeePositions();
     }
    
 

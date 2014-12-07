@@ -7,33 +7,33 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 
-public final class ManagementEmployeePositons {
+public final class ManagementEmployeePositions {
    
     
-    List <String> managementEmployeePositons;
-    List <Integer> managementEmployeePositonsSalary;
+    List <String> managementEmployeePositions;
+    List <Integer> managementEmployeePositionsSalary;
     
     
-       private ManagementEmployeePositons() {
+       private ManagementEmployeePositions() {
          
-           managementEmployeePositons=new ArrayList<>();
-           managementEmployeePositonsSalary=new ArrayList<>();
-           managementEmployeePositons.add("CTO");
-           managementEmployeePositonsSalary.add(50000);
-           managementEmployeePositons.add("CFO");
-           managementEmployeePositonsSalary.add(80000);
-           managementEmployeePositons.add("CEO");
-           managementEmployeePositonsSalary.add(100000);
+           managementEmployeePositions=new ArrayList<>();
+           managementEmployeePositionsSalary=new ArrayList<>();
+           managementEmployeePositions.add("CTO");
+           managementEmployeePositionsSalary.add(50000);
+           managementEmployeePositions.add("CFO");
+           managementEmployeePositionsSalary.add(80000);
+           managementEmployeePositions.add("CEO");
+           managementEmployeePositionsSalary.add(100000);
            
            
     }
     
-    public static ManagementEmployeePositons getInstance() {
-        return NewManagementEmployeePositonsHolder.INSTANCE;
+    public static ManagementEmployeePositions getInstance() {
+        return ManagementEmployeePositionsHolder.INSTANCE;
     }
     
-    private static class NewManagementEmployeePositonsHolder {
+    private static class ManagementEmployeePositionsHolder {
 
-        private static final ManagementEmployeePositons INSTANCE = new ManagementEmployeePositons();
+        private static final ManagementEmployeePositions INSTANCE = new ManagementEmployeePositions();
     }
 }
