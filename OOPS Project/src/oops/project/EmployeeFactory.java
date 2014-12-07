@@ -12,7 +12,7 @@ public class EmployeeFactory extends AbstractProductEmployeeFactory
 
     @Override
     Employee getEmployee() {
-        return new Employee();
+        return new Employee() {};
     }
     
     

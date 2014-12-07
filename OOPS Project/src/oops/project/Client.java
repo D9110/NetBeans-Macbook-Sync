@@ -6,10 +6,14 @@ public class Client {
     
     public static void main(String args[]) throws Exception {
      
-        
        
-        
-        
+       
+      AbstractProductEmployeeFactory apefe=FactoryProducer.getFactory("Employee");
+      AbstractProductEmployeeFactory apefp=FactoryProducer.getFactory("Product");
+      
+      Employee e=apefe.getEmployee();
+      Product  p=apefp.getProduct("Tablets");
+     
         
     }
     

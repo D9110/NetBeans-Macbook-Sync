@@ -1,9 +1,11 @@
 
 package oops.project;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
                                                             //ADD EMPLOYEE DEPARTMENT WITH HASH MAP
-public class Employee implements java.io.Serializable {
+public abstract class Employee implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
     
     private String ID;
@@ -11,14 +13,16 @@ public class Employee implements java.io.Serializable {
     private String DOB;
     private String Address;
     private String phoneNo;
-    private List<String> positionsHeld;
+    private Stack<String> positionsHeld;
 
     public Employee() {
+        
+       positionsHeld=new Stack<>();
         
     }
     
     
-    public Employee(String ID,String name, String DOB, String Address, String phoneNo, List<String> positionsHeld) {
+    public Employee(String ID,String name, String DOB, String Address, String phoneNo, Stack<String> positionsHeld) {
         this.ID=ID;
         this.name = name;
         this.DOB = DOB;
@@ -27,16 +31,17 @@ public class Employee implements java.io.Serializable {
         this.positionsHeld = positionsHeld;
     }
 
-    public List<String> getPositionsHeld() {
+    public Stack<String> getPositionsHeld() {
         return positionsHeld;
     }
 
-    public void setPositionsHeld(List<String> positionsHeld) {
+    public void setPositionsHeld(Stack<String> positionsHeld) {
         this.positionsHeld = positionsHeld;
     }
     
-    public void setPostionsHeld()
+    public void setPostionsHeld(String position)
     {
+        positionsHeld.add(position);
     }
 
     public String getName() {
@@ -73,4 +78,41 @@ public class Employee implements java.io.Serializable {
     
     
     
+}
+
+
+
+class SoftwareEmployee extends Employee
+{
+    private static final long serialVersionUID = 1L;
+
+    public SoftwareEmployee() {
+        super();
+    }
+
+
+}
+
+
+class HardwareEmployee extends Employee
+{
+    private static final long serialVersionUID = 1L;
+
+    public HardwareEmployee() {
+        super();
+    }
+
+
+}
+
+
+class ManagementEmployee extends Employee
+{
+    private static final long serialVersionUID = 1L;
+
+    public ManagementEmployee() {
+        super();
+    }
+
+
 }
