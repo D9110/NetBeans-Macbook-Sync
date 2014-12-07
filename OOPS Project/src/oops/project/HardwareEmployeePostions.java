@@ -1,26 +1,38 @@
 
 package oops.project;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public final class HardwareEmployeePostions {
    
-   HashMap <String,Integer> hardwareEmployeePositions;
+   List <String> hardwareEmployeePositions;
+   List <Integer> hardwareEmployeePositionsSalary;
     
   
    private HardwareEmployeePostions()
            {
-              hardwareEmployeePositions=new LinkedHashMap<>(); 
-              hardwareEmployeePositions.put("BeginnerHardwareDeveloper",10000);
-              hardwareEmployeePositions.put("DatabaseAdministrator",15000);
-              hardwareEmployeePositions.put("PrimaryHardwareDeveloper",20000);
-              hardwareEmployeePositions.put("PrincipalHardwareArchitect",25000);
-              hardwareEmployeePositions.put("SeniorHardwareArchitect",30000);
-              hardwareEmployeePositions.put("ProductLead",35000);
-              hardwareEmployeePositions.put("DepartmentHead",40000);                                  
-                               
+              hardwareEmployeePositions=new ArrayList<>(); 
+              hardwareEmployeePositionsSalary=new ArrayList<>();
+              
+              
+              
+              hardwareEmployeePositions.add("BeginnerHardwareDeveloper");
+              hardwareEmployeePositionsSalary.add(10000);
+              hardwareEmployeePositions.add("DatabaseAdministrator");
+              hardwareEmployeePositionsSalary.add(15000);
+              hardwareEmployeePositions.add("PrimaryHardwareDeveloper");
+              hardwareEmployeePositionsSalary.add(20000);
+              hardwareEmployeePositions.add("PrincipalHardwareArchitect");
+              hardwareEmployeePositionsSalary.add(25000);
+              hardwareEmployeePositions.add("SeniorHardwareArchitect");
+              hardwareEmployeePositionsSalary.add(30000);
+              hardwareEmployeePositions.add("ProductLead");
+              hardwareEmployeePositionsSalary.add(35000);
+              hardwareEmployeePositions.add("DepartmentHead");                                  
+              hardwareEmployeePositionsSalary.add(40000);
+
            }
    
    
@@ -32,8 +44,8 @@ public final class HardwareEmployeePostions {
 
         private static final HardwareEmployeePostions INSTANCE = new HardwareEmployeePostions();
     }
-    
-}
    
-    
-  
+
+}
+
+

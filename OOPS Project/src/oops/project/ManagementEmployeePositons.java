@@ -1,21 +1,29 @@
 
 package oops.project;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 
 public final class ManagementEmployeePositons {
    
     
-    HashMap <String,Integer> managementEmployeePositons;
+    List <String> managementEmployeePositons;
+    List <Integer> managementEmployeePositonsSalary;
+    
     
        private ManagementEmployeePositons() {
          
-           managementEmployeePositons=new LinkedHashMap<>();
-           managementEmployeePositons.put("CTO", 50000);
-           managementEmployeePositons.put("CFO", 80000);
-           managementEmployeePositons.put("CEO", 10000);
+           managementEmployeePositons=new ArrayList<>();
+           managementEmployeePositonsSalary=new ArrayList<>();
+           managementEmployeePositons.add("CTO");
+           managementEmployeePositonsSalary.add(50000);
+           managementEmployeePositons.add("CFO");
+           managementEmployeePositonsSalary.add(80000);
+           managementEmployeePositons.add("CEO");
+           managementEmployeePositonsSalary.add(100000);
            
            
     }
