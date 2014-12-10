@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 
 public final class ProductInput<T extends Product> {
 
-
     void getInput(T product) {
 
         BufferedReader dd = new BufferedReader(new InputStreamReader(System.in));
@@ -40,7 +39,7 @@ public final class ProductInput<T extends Product> {
             if (product.getClass() == Tablets.class) {
                 Tablets tablet = (Tablets) product;
 
-             //   System.out.println("Hello");
+                //   System.out.println("Hello");
                 tablet.setCellular(Boolean.TRUE);
                 tablet.setOS(null);
                 tablet.setProcessor(null);
@@ -115,7 +114,7 @@ public final class ProductInput<T extends Product> {
         if (product.getClass() == SAAS.class) {
             SAAS saas = (SAAS) product;
 
-     //    saas.setMinServerCores(minServerCores);
+            //    saas.setMinServerCores(minServerCores);
             //  saas.setSubscriptionYears(subscriptionYears);
         }
 

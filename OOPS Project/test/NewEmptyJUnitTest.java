@@ -1,8 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
+import oops.project.AbstractProductEmployeeFactory;
+import oops.project.Employee;
+import oops.project.FactoryProducer;
+import oops.project.Product;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,15 +16,34 @@ import static org.junit.Assert.*;
  */
 public class NewEmptyJUnitTest {
     
+    
+   static AbstractProductEmployeeFactory apefp ;
+    
+   static AbstractProductEmployeeFactory apefe;
+    
+    
     public NewEmptyJUnitTest() {
     }
     
     @BeforeClass
     public static void setUpClass() {
+        
+      assertNull(apefe);
+      assertNull(apefp);
+        
+        
+       apefe=FactoryProducer.getFactory("Employee");
+       apefp =FactoryProducer.getFactory("Product");
+       
+       assertNotNull(apefe);
+       assertNotNull(apefp);
+        
     }
     
     @AfterClass
     public static void tearDownClass() {
+       
+        
     }
     
     @Before
@@ -33,11 +52,48 @@ public class NewEmptyJUnitTest {
     
     @After
     public void tearDown() {
+        
+         
+        assertNull(apefe);
+      assertNull(apefp);
+         
+        
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    
+        
+    @Test
+    public void TestFactory()
+    {
+    
+ 
+     Employee e=apefe.getEmployee("SoftwareEmployee");
+      Product  p=apefp.getProduct("Tablets"); 
+      
+      p.setName("check");
+      
+      assertNotNull(p);
+      assertNotNull(p.getName());
+    }
+    
+
+    
+      @Test
+    public void TestFactory1()
+    {
+    
+ 
+     Employee e=apefe.getEmployee("SoftwareEmployee");
+      Product  p=apefp.getProduct("Tablets"); 
+      
+      p.setName("check");
+      
+      assertNull(p);
+      assertNull(p.getName());
+    }  
+    
+    
+    
+    
+    
 }

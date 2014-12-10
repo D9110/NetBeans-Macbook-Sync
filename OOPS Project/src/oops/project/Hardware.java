@@ -3,7 +3,7 @@ package oops.project;
 import java.util.List;
 import java.util.Objects;
 
-public interface Hardware {                                                             //MAKE INTERFACE FOR ALL
+public interface Hardware {                                                             
 
     void printPartDetails();
 
@@ -210,12 +210,12 @@ class Phones extends AbstractProduct implements Hardware {
 
     @Override
     public void compareWithOtherHardwareProducts(Product... product) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
     public void printPartDetails() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
 }
@@ -343,14 +343,15 @@ class Laptops extends AbstractProduct implements Hardware {
         return true;
     }
 
+   
     @Override
     public void compareWithOtherHardwareProducts(Product... product) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
     public void printPartDetails() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
 }

@@ -6,7 +6,7 @@ public class ProductFactory extends AbstractProductEmployeeFactory
 {
 
     @Override
-    Product getProduct(String productType) {
+    public Product getProduct(String productType) {
                    
     Product product = null;
         
@@ -23,7 +23,7 @@ public class ProductFactory extends AbstractProductEmployeeFactory
     }
 
     @Override
-    Employee getEmployee(String employeeType) {
+    public Employee getEmployee(String employeeType) {
        return null;
     }
 
