@@ -2,12 +2,10 @@
 package oops.project;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 
-public final class ManagementEmployeePositions {
+public class ManagementEmployeePositions {
    
     
     List <String> managementEmployeePositions;
@@ -17,6 +15,7 @@ public final class ManagementEmployeePositions {
        private ManagementEmployeePositions() {
          
            managementEmployeePositions=new ArrayList<>();
+           
            managementEmployeePositionsSalary=new ArrayList<>();
            managementEmployeePositions.add("CTO");
            managementEmployeePositionsSalary.add(50000);
@@ -24,8 +23,7 @@ public final class ManagementEmployeePositions {
            managementEmployeePositionsSalary.add(80000);
            managementEmployeePositions.add("CEO");
            managementEmployeePositionsSalary.add(100000);
-           
-           
+            
     }
     
     public static ManagementEmployeePositions getInstance() {

@@ -18,7 +18,7 @@ class Tablets extends Product implements Hardware{
     private String storage;
     private Boolean cellular;
 
-    public Tablets(String category, String ID, int name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
+    public Tablets(String category, String ID, String name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
         super(category, ID, name, price, model, features, volumesAvailable, totalVolumes, volumesSold, inPrice, outPrice);
     }
 
@@ -94,7 +94,7 @@ class Phones extends Product implements Hardware{
     private String OS;
     private String storage;    
     
-    public Phones(String category, String ID, int name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
+    public Phones(String category, String ID, String name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
         super(category, ID, name, price, model, features, volumesAvailable, totalVolumes, volumesSold, inPrice, outPrice);
     }
 
@@ -163,7 +163,7 @@ class Laptops extends Product implements Hardware{
     private Boolean retina;   
     
     
-    public Laptops(String category, String ID, int name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
+    public Laptops(String category, String ID, String name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
         super(category, ID, name, price, model, features, volumesAvailable, totalVolumes, volumesSold, inPrice, outPrice);
     }
 
@@ -244,7 +244,7 @@ class Laptops extends Product implements Hardware{
 class Acessories extends Product implements Hardware{
     private static final long serialVersionUID = 1L;
 
-    public Acessories(String category, String ID, int name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
+    public Acessories(String category, String ID, String name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
         super(category, ID, name, price, model, features, volumesAvailable, totalVolumes, volumesSold, inPrice, outPrice);
     }
 

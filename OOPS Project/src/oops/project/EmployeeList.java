@@ -9,7 +9,7 @@ import java.util.Stack;
 
 public class EmployeeList implements Iterable<Employee> {
 
-    private List<Employee> employeeList;
+    private final List<Employee> employeeList;
     
     @Override
     public Iterator<Employee> iterator() {
@@ -24,10 +24,11 @@ public class EmployeeList implements Iterable<Employee> {
     
     void addEmployee(String ID,String name, String DOB, String Address, String phoneNo,Stack<String> positionsHeld)
     {
-        employeeList.add(new Employee(ID,name,DOB,Address,phoneNo,positionsHeld) {});
+        employeeList.add(new Employee(ID,name,DOB,Address,phoneNo,positionsHeld) {private static final long serialVersionUID = 1L;
+        });
     }
 
-       void addEmployee(Employee employee)
+    void addEmployee(Employee employee)
     {
     employeeList.add(employee);
     }

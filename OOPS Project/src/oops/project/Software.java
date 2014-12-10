@@ -19,7 +19,7 @@ class SAAS extends Product implements Software
     private int subscriptionYears;
     
 
-    public SAAS(String category, String ID, int name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
+    public SAAS(String category, String ID, String name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
         super(category, ID, name, price, model, features, volumesAvailable, totalVolumes, volumesSold, inPrice, outPrice);
     }
 
@@ -59,7 +59,7 @@ class OS extends Product implements Software
     private String releaseYear;
     private Boolean supported;
 
-    public OS(String category, String ID, int name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
+    public OS(String category, String ID, String name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
         super(category, ID, name, price, model, features, volumesAvailable, totalVolumes, volumesSold, inPrice, outPrice);
     }
 
@@ -135,7 +135,7 @@ class OpenSource extends Product implements Software
     private String productLead;
     private String irc;
     
-    public OpenSource(String category, String ID, int name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
+    public OpenSource(String category, String ID, String name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
         super(category, ID, name, price, model, features, volumesAvailable, totalVolumes, volumesSold, inPrice, outPrice);
     }
 
@@ -174,7 +174,7 @@ class PAAS extends Product implements Software
 {
     private static final long serialVersionUID = 1L;
 
-    public PAAS(String category, String ID, int name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
+    public PAAS(String category, String ID, String name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
         super(category, ID, name, price, model, features, volumesAvailable, totalVolumes, volumesSold, inPrice, outPrice);
     }
 

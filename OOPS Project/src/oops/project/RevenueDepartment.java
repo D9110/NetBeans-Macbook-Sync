@@ -39,7 +39,6 @@ class Revenue implements RevenueDepartment
     
     ProductList productList=ProductList.getInstance();
     EmployeeList employeeList=EmployeeList.getInstance();
-    
 
     
     @Override

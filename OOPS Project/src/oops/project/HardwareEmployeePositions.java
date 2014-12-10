@@ -14,10 +14,7 @@ public final class HardwareEmployeePositions {
    private HardwareEmployeePositions()
            {
               hardwareEmployeePositions=new ArrayList<>(); 
-              hardwareEmployeePositionsSalary=new ArrayList<>();
-              
-              
-              
+              hardwareEmployeePositionsSalary=new ArrayList<>();    
               hardwareEmployeePositions.add("BeginnerHardwareDeveloper");
               hardwareEmployeePositionsSalary.add(10000);
               hardwareEmployeePositions.add("DatabaseAdministrator");

@@ -16,9 +16,7 @@ public abstract class Employee implements java.io.Serializable {
     public Employee() {
         
        positionsHeld=new Stack<>();
-       
-      
-        
+ 
     }
     
     
@@ -138,7 +136,7 @@ class ManagementEmployee extends Employee
 {
     private static final long serialVersionUID = 1L;
 
-    ManagementEmployeePositons managementEmployeePositions=ManagementEmployeePositions.getInstance();
+    ManagementEmployeePositions managementEmployeePositions=ManagementEmployeePositions.getInstance();
     
     public ManagementEmployee() {
         super();
@@ -148,7 +146,7 @@ class ManagementEmployee extends Employee
      public int getEmployeeSalary()
     {
     
-        return managementEmployeePositions.hmanagementEmployeePositionsSalary.get(managementEmployeePositions.managementEmployeePositions.indexOf(this.getPositionHeld()));
+        return managementEmployeePositions.managementEmployeePositionsSalary.get(managementEmployeePositions.managementEmployeePositions.indexOf(this.getPositionHeld()));
     
     }
     

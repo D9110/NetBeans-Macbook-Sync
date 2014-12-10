@@ -40,7 +40,7 @@ abstract class HumanResource implements HR {
     public void doPromotions(List<Employee> employeeList, List<Boolean> promotionStatus) {
 
         HardwareEmployeePositions hardwareEmployeePostions = HardwareEmployeePositions.getInstance();
-        ManagementEmployeePositons managementEmployeePositons = ManagementEmployeePositons.getInstance();
+        ManagementEmployeePositions managementEmployeePositions = ManagementEmployeePositions.getInstance();
         SoftwareEmployeePositions softwareEmployeePostions = SoftwareEmployeePositions.getInstance();
 
         Iterator<Employee> employeeIterator = employeeList.iterator();
@@ -61,7 +61,7 @@ abstract class HumanResource implements HR {
                 }
 
                 if (employee.getClass() == ManagementEmployee.class) {
-                    employee.setPostionsHeld(managementEmployeePositons.managementEmployeePositons.get(managementEmployeePositons.managementEmployeePositons.indexOf(employee.getPositionsHeld().peek()) + 1));
+                    employee.setPostionsHeld(managementEmployeePositions.managementEmployeePositions.get(managementEmployeePositions.managementEmployeePositions.indexOf(employee.getPositionsHeld().peek()) + 1));
 
                 }
             }

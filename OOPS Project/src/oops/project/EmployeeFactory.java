@@ -15,9 +15,9 @@ public class EmployeeFactory extends AbstractProductEmployeeFactory
         
         Employee employee = null;
         
-        if(employeeType=="SoftwareEmployee")employee=new SoftwareEmployee();
-        if(employeeType=="HardwareEmployee")employee=new HardwareEmployee();
-        if(employeeType=="ManagementEmployee")employee=new ManagementEmployee();
+        if("SoftwareEmployee".equals(employeeType))employee=new SoftwareEmployee();
+        if("HardwareEmployee".equals(employeeType))employee=new HardwareEmployee();
+        if("ManagementEmployee".equals(employeeType))employee=new ManagementEmployee();
         
         return employee;
         

@@ -13,12 +13,12 @@ public interface MarketableProduct{
 }
 
 
-class Product implements MarketableProduct,java.io.Serializable
+abstract class Product implements MarketableProduct,java.io.Serializable
 {   
     private String category;
     private static final long serialVersionUID = 1L;
     private String ID;
-    private int name;
+    private String name;
     private int price;
     private int model;
     private List<String> features;
@@ -28,7 +28,7 @@ class Product implements MarketableProduct,java.io.Serializable
     private int inPrice;
     private int outPrice;
 
-    public Product(String category,String ID,int name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
+    public Product(String category,String ID,String name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
         
         this.category=category;
         this.ID=ID;
@@ -231,6 +231,30 @@ class Product implements MarketableProduct,java.io.Serializable
           
         }  
       
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public String getName() {
+        return name;
     }
     
 }
