@@ -4,6 +4,7 @@ package oops.project;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public interface MarketableProduct{
     
@@ -256,5 +257,73 @@ abstract class Product implements MarketableProduct,java.io.Serializable
     public String getName() {
         return name;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.category);
+        hash = 67 * hash + Objects.hashCode(this.ID);
+        hash = 67 * hash + Objects.hashCode(this.name);
+        hash = 67 * hash + this.price;
+        hash = 67 * hash + this.model;
+        hash = 67 * hash + Objects.hashCode(this.features);
+        hash = 67 * hash + this.volumesAvailable;
+        hash = 67 * hash + this.totalVolumes;
+        hash = 67 * hash + this.volumesSold;
+        hash = 67 * hash + this.inPrice;
+        hash = 67 * hash + this.outPrice;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Product other = (Product) obj;
+        if (!Objects.equals(this.category, other.category)) {
+            return false;
+        }
+        if (!Objects.equals(this.ID, other.ID)) {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (this.price != other.price) {
+            return false;
+        }
+        if (this.model != other.model) {
+            return false;
+        }
+        if (!Objects.equals(this.features, other.features)) {
+            return false;
+        }
+        if (this.volumesAvailable != other.volumesAvailable) {
+            return false;
+        }
+        if (this.totalVolumes != other.totalVolumes) {
+            return false;
+        }
+        if (this.volumesSold != other.volumesSold) {
+            return false;
+        }
+        if (this.inPrice != other.inPrice) {
+            return false;
+        }
+        if (this.outPrice != other.outPrice) {
+            return false;
+        }
+        return true;
+    }
     
+
+
+
+
+
+
 }

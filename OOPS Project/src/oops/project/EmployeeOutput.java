@@ -1,4 +1,3 @@
-
 package oops.project;
 
 import java.io.BufferedReader;
@@ -9,9 +8,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class EmployeeInput<T extends Employee> {
+public class EmployeeOutput<T extends Employee> {
     
-    void getInput(T employee)
+    void setOutput(T employee)
     {
     
         
@@ -40,8 +39,6 @@ public class EmployeeInput<T extends Employee> {
       
        
     }
-    
-    
-    
-    
 }
+    
+    

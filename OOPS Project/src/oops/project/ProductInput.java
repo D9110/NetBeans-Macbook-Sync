@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 
 public final class ProductInput<T extends Product> {
 
-    T product;
 
     void getInput(T product) {
 
