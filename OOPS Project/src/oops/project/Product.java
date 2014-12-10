@@ -2,19 +2,131 @@
 
 package oops.project;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public interface MarketableProduct{
+public interface Product extends Serializable{
     
-    void sell();
+//    void sell();
+//    void buy();
+//    void takeBack();    
+    
+    void addFeatures(String feature);
+
     void buy();
-    void takeBack();    
+
+    void buy(int volume);
+
+    boolean equals(Object obj);
+
+    String getCategory();
+
+    /**
+     * @return the features
+     */
+    List<String> getFeatures();
+
+    String getID();
+
+    /**
+     * @return the inPrice
+     */
+    int getInPrice();
+
+    /**
+     * @return the model
+     */
+    int getModel();
+
+    String getName();
+
+    /**
+     * @return the outPrice
+     */
+    int getOutPrice();
+
+    /**
+     * @return the price
+     */
+    int getPrice();
+
+    /**
+     * @return the totalVolumes
+     */
+    int getTotalVolumes();
+
+    /**
+     * @return the volumesAvailable
+     */
+    int getVolumesAvailable();
+
+    /**
+     * @return the volumesSold
+     */
+    int getVolumesSold();
+
+    int hashCode();
+
+    void sell();
+
+    void sell(int volume);
+
+    void setCategory(String category);
+
+    /**
+     * @param features the features to set
+     */
+    void setFeatures(List<String> features);
+
+    void setID(String ID);
+
+    /**
+     * @param inPrice the inPrice to set
+     */
+    void setInPrice(int inPrice);
+
+    /**
+     * @param model the model to set
+     */
+    void setModel(int model);
+
+    void setName(String name);
+
+    /**
+     * @param outPrice the outPrice to set
+     */
+    void setOutPrice(int outPrice);
+
+    /**
+     * @param price the price to set
+     */
+    void setPrice(int price);
+
+    /**
+     * @param totalVolumes the totalVolumes to set
+     */
+    void setTotalVolumes(int totalVolumes);
+
+    /**
+     * @param volumesAvailable the volumesAvailable to set
+     */
+    void setVolumesAvailable(int volumesAvailable);
+
+    /**
+     * @param volumesSold the volumesSold to set
+     */
+    void setVolumesSold(int volumesSold);
+
+    void takeBack();
+
+    void takeBack(int volume);
+    
 }
 
 
-abstract class Product implements MarketableProduct,java.io.Serializable
+abstract class AbstractProduct implements Product
 {   
     private String category;
     private static final long serialVersionUID = 1L;
@@ -29,7 +141,7 @@ abstract class Product implements MarketableProduct,java.io.Serializable
     private int inPrice;
     private int outPrice;
 
-    public Product(String category,String ID,String name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
+    public AbstractProduct(String category,String ID,String name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
         
         this.category=category;
         this.ID=ID;
@@ -46,7 +158,7 @@ abstract class Product implements MarketableProduct,java.io.Serializable
         ProductList.getInstance().addProduct(this);
     }
 
-    public Product(String Category) {
+    public AbstractProduct(String Category) {
         
         this.category=category;
         features= new ArrayList<>();  
@@ -54,7 +166,7 @@ abstract class Product implements MarketableProduct,java.io.Serializable
       
     }
 
-    public Product() {
+    public AbstractProduct() {
       features= new ArrayList<>(); 
      
     }
@@ -65,6 +177,7 @@ abstract class Product implements MarketableProduct,java.io.Serializable
     /**
      * @return the price
      */
+    @Override
     public int getPrice() {
         return price;
     }
@@ -72,6 +185,7 @@ abstract class Product implements MarketableProduct,java.io.Serializable
     /**
      * @param price the price to set
      */
+    @Override
     public void setPrice(int price) {
         this.price = price;
     }
@@ -79,6 +193,7 @@ abstract class Product implements MarketableProduct,java.io.Serializable
     /**
      * @return the model
      */
+    @Override
     public int getModel() {
         return model;
     }
@@ -86,6 +201,7 @@ abstract class Product implements MarketableProduct,java.io.Serializable
     /**
      * @param model the model to set
      */
+    @Override
     public void setModel(int model) {
         this.model = model;
     }
@@ -93,6 +209,7 @@ abstract class Product implements MarketableProduct,java.io.Serializable
     /**
      * @return the features
      */
+    @Override
     public List<String> getFeatures() {
         return features;
     }
@@ -100,10 +217,12 @@ abstract class Product implements MarketableProduct,java.io.Serializable
     /**
      * @param features the features to set
      */
+    @Override
     public void setFeatures(List<String> features) {
         this.features = features;
     }
     
+    @Override
     public void addFeatures(String feature)
     {
     features.add(feature);
@@ -113,6 +232,7 @@ abstract class Product implements MarketableProduct,java.io.Serializable
     /**
      * @return the volumesAvailable
      */
+    @Override
     public int getVolumesAvailable() {
         return volumesAvailable;
     }
@@ -120,6 +240,7 @@ abstract class Product implements MarketableProduct,java.io.Serializable
     /**
      * @param volumesAvailable the volumesAvailable to set
      */
+    @Override
     public void setVolumesAvailable(int volumesAvailable) {
         this.volumesAvailable = volumesAvailable;
     }
@@ -127,6 +248,7 @@ abstract class Product implements MarketableProduct,java.io.Serializable
     /**
      * @return the totalVolumes
      */
+    @Override
     public int getTotalVolumes() {
         return totalVolumes;
     }
@@ -134,6 +256,7 @@ abstract class Product implements MarketableProduct,java.io.Serializable
     /**
      * @param totalVolumes the totalVolumes to set
      */
+    @Override
     public void setTotalVolumes(int totalVolumes) {
         this.totalVolumes = totalVolumes;
     }
@@ -141,6 +264,7 @@ abstract class Product implements MarketableProduct,java.io.Serializable
     /**
      * @return the volumesSold
      */
+    @Override
     public int getVolumesSold() {
         return volumesSold;
     }
@@ -148,6 +272,7 @@ abstract class Product implements MarketableProduct,java.io.Serializable
     /**
      * @param volumesSold the volumesSold to set
      */
+    @Override
     public void setVolumesSold(int volumesSold) {
         this.volumesSold = volumesSold;
     }
@@ -155,6 +280,7 @@ abstract class Product implements MarketableProduct,java.io.Serializable
     /**
      * @return the inPrice
      */
+    @Override
     public int getInPrice() {
         return inPrice;
     }
@@ -162,6 +288,7 @@ abstract class Product implements MarketableProduct,java.io.Serializable
     /**
      * @param inPrice the inPrice to set
      */
+    @Override
     public void setInPrice(int inPrice) {
         this.inPrice = inPrice;
     }
@@ -169,6 +296,7 @@ abstract class Product implements MarketableProduct,java.io.Serializable
     /**
      * @return the outPrice
      */
+    @Override
     public int getOutPrice() {
         return outPrice;
     }
@@ -176,6 +304,7 @@ abstract class Product implements MarketableProduct,java.io.Serializable
     /**
      * @param outPrice the outPrice to set
      */
+    @Override
     public void setOutPrice(int outPrice) {
         this.outPrice = outPrice;
     }
@@ -205,6 +334,7 @@ abstract class Product implements MarketableProduct,java.io.Serializable
     }
     
     
+    @Override
     public void sell(int volume) {
        
         if(volumesAvailable>volume)
@@ -215,6 +345,7 @@ abstract class Product implements MarketableProduct,java.io.Serializable
         }      
     }
 
+    @Override
     public void buy(int volume) {
 
         volumesAvailable+=volume;
@@ -223,6 +354,7 @@ abstract class Product implements MarketableProduct,java.io.Serializable
     }
 
     
+    @Override
     public void takeBack(int volume) {
         
         if(volumesAvailable>volume)
@@ -234,26 +366,32 @@ abstract class Product implements MarketableProduct,java.io.Serializable
       
     }
 
+    @Override
     public void setCategory(String category) {
         this.category = category;
     }
 
+    @Override
     public void setID(String ID) {
         this.ID = ID;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }
 
+    @Override
     public String getCategory() {
         return category;
     }
 
+    @Override
     public String getID() {
         return ID;
     }
 
+    @Override
     public String getName() {
         return name;
     }
@@ -283,7 +421,7 @@ abstract class Product implements MarketableProduct,java.io.Serializable
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Product other = (Product) obj;
+        final AbstractProduct other = (AbstractProduct) obj;
         if (!Objects.equals(this.category, other.category)) {
             return false;
         }
@@ -319,11 +457,8 @@ abstract class Product implements MarketableProduct,java.io.Serializable
         }
         return true;
     }
+
     
-
-
-
-
-
+    
 
 }

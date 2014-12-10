@@ -11,7 +11,7 @@ public interface Hardware {                                                     
 
 }
 
-class Tablets extends Product implements Hardware {
+class Tablets extends AbstractProduct implements Hardware {
 
     private static final long serialVersionUID = 1L;
 
@@ -120,7 +120,7 @@ class Tablets extends Product implements Hardware {
 
 }
 
-class Phones extends Product implements Hardware {
+class Phones extends AbstractProduct implements Hardware {
 
     private static final long serialVersionUID = 1L;
 
@@ -220,7 +220,7 @@ class Phones extends Product implements Hardware {
 
 }
 
-class Laptops extends Product implements Hardware {
+class Laptops extends AbstractProduct implements Hardware {
 
     private static final long serialVersionUID = 1L;
 
@@ -355,7 +355,7 @@ class Laptops extends Product implements Hardware {
 
 }
 
-class Acessories extends Product implements Hardware {
+class Acessories extends AbstractProduct implements Hardware {
 
     private static final long serialVersionUID = 1L;
 

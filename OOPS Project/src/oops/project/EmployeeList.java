@@ -26,7 +26,7 @@ public class EmployeeList implements Iterable<Employee> {
     
     void addEmployee(String ID,String name, String DOB, String Address, String phoneNo,Stack<String> positionsHeld)
     {
-        employeeList.add(new Employee(ID,name,DOB,Address,phoneNo,positionsHeld) {private static final long serialVersionUID = 1L;
+        employeeList.add(new AbstractEmployee(ID,name,DOB,Address,phoneNo,positionsHeld) {private static final long serialVersionUID = 1L;
         });
     }
 

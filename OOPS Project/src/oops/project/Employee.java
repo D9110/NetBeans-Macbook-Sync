@@ -1,15 +1,51 @@
 
 package oops.project;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.Stack;
 
+ 
+public interface Employee extends Serializable {
 
+    boolean equals(Object obj);
+
+    String getAddress();
+
+    String getDOB();
+
+    String getID();
+
+    String getName();
+
+    String getPhoneNo();
+
+    String getPositionHeld();
+
+    Stack<String> getPositionsHeld();
+
+    int hashCode();
+
+    void setAddress(String Address);
+
+    void setDOB(String DOB);
+
+    void setID(String ID);
+
+    void setName(String name);
+
+    void setPhoneNo(String phoneNo);
+
+    void setPositionsHeld(Stack<String> positionsHeld);
+
+    void setPostionsHeld(String position);
+    
+}
 
 
 
                                                                    //ADD EMPLOYEE DEPARTMENT WITH HASH MAP
-public abstract class Employee implements java.io.Serializable {
+ abstract class AbstractEmployee implements Employee {
     private static final long serialVersionUID = 1L;
 
 
@@ -21,13 +57,13 @@ public abstract class Employee implements java.io.Serializable {
     private String phoneNo;
     private Stack<String> positionsHeld;
 
-    public Employee() {
+    public AbstractEmployee() {
         
        positionsHeld=new Stack<>();
  
     }
     
-    public Employee(String ID,String name, String DOB, String Address, String phoneNo, Stack<String> positionsHeld) {
+    public AbstractEmployee(String ID,String name, String DOB, String Address, String phoneNo, Stack<String> positionsHeld) {
         this.ID=ID;
         this.name = name;
         this.DOB = DOB;
@@ -40,10 +76,12 @@ public abstract class Employee implements java.io.Serializable {
     }
     
     
+    @Override
     public String getID() {
         return ID;
     }
 
+    @Override
     public void setID(String ID) {
         this.ID = ID;
     }
@@ -51,53 +89,65 @@ public abstract class Employee implements java.io.Serializable {
     
 
 
+    @Override
     public Stack<String> getPositionsHeld() {
         return positionsHeld;
     }
 
+    @Override
     public void setPositionsHeld(Stack<String> positionsHeld) {
         this.positionsHeld = positionsHeld;
     }
     
+    @Override
     public void setPostionsHeld(String position)
     {
         positionsHeld.add(position);
     }
     
+    @Override
     public String getPositionHeld()
     {
     
     return positionsHeld.peek();
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }
 
+    @Override
     public String getDOB() {
         return DOB;
     }
 
+    @Override
     public void setDOB(String DOB) {
         this.DOB = DOB;
     }
 
+    @Override
     public String getAddress() {
         return Address;
     }
 
+    @Override
     public void setAddress(String Address) {
         this.Address = Address;
     }
 
+    @Override
     public String getPhoneNo() {
         return phoneNo;
     }
 
+    @Override
     public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
     }
@@ -123,7 +173,7 @@ public abstract class Employee implements java.io.Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Employee other = (Employee) obj;
+        final AbstractEmployee other = (AbstractEmployee) obj;
         if (!Objects.equals(this.ID, other.ID)) {
             return false;
         }
@@ -144,12 +194,14 @@ public abstract class Employee implements java.io.Serializable {
         }
         return true;
     }
+
+
     
 }
 
 
 
-class SoftwareEmployee extends Employee
+class SoftwareEmployee extends AbstractEmployee
 {
     private static final long serialVersionUID = 1L;
 
@@ -190,7 +242,7 @@ class SoftwareEmployee extends Employee
 }
 
 
-class HardwareEmployee extends Employee
+class HardwareEmployee extends AbstractEmployee
 {
     private static final long serialVersionUID = 1L;
 
@@ -229,7 +281,7 @@ class HardwareEmployee extends Employee
 }
 
 
-class ManagementEmployee extends Employee
+class ManagementEmployee extends AbstractEmployee
 {
     private static final long serialVersionUID = 1L;
 

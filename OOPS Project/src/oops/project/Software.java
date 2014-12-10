@@ -10,7 +10,7 @@ public interface Software {
     
 }
 
-class SAAS extends Product implements Software
+class SAAS extends AbstractProduct implements Software
 {
     private static final long serialVersionUID = 1L;
     
@@ -47,7 +47,7 @@ class SAAS extends Product implements Software
  
 }
 
-class OS extends Product implements Software
+class OS extends AbstractProduct implements Software
 {
     private static final long serialVersionUID = 1L;
     
@@ -127,7 +127,7 @@ class OS extends Product implements Software
 
 }
 
-class OpenSource extends Product implements Software
+class OpenSource extends AbstractProduct implements Software
 {
     private static final long serialVersionUID = 1L;
 
@@ -170,7 +170,7 @@ class OpenSource extends Product implements Software
 
 }
 
-class PAAS extends Product implements Software
+class PAAS extends AbstractProduct implements Software
 {
     private static final long serialVersionUID = 1L;
 
