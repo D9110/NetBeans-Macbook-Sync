@@ -1,0 +1,2520 @@
+
+package oops.project;
+
+
+public abstract class AbstractProductEmployeeFactory {
+    
+public abstract Product getProduct(String productType);
+public abstract Employee getEmployee(String employeeType);
+
+}
+
+package oops.project;
+
+public class Acquisitions {
+    
+    //buy company
+    //get employee
+    //get hardware
+    
+    
+}
+package oops.project;
+
+
+public class Client {
+    
+    
+    public static void main(String args[]) throws Exception {
+     
+       
+       
+      AbstractProductEmployeeFactory apefe=FactoryProducer.getFactory("Employee");
+      AbstractProductEmployeeFactory apefp=FactoryProducer.getFactory("Product");
+      
+      Employee e=apefe.getEmployee("SoftwareEmployee");
+      Product  p=apefp.getProduct("Tablets");
+     
+      
+    
+      
+     Tablets t=(Tablets) p;
+     t.setOS("ios");
+        System.out.println(t.getOS());
+        
+        t.setInPrice(10000);
+        
+        Product p1=t;
+        
+        System.out.println(p1.getInPrice()); 
+        
+        t.setModel(1);
+     
+        System.out.println(t.getModel());
+        
+        t.setTotalVolumes(10000);
+        t.setVolumesAvailable(9000);
+        
+        t.sell(1000);
+        
+        System.out.println(t.getVolumesAvailable());
+        
+//      ProductInput<Tablets> ps = new ProductInput<>();
+//      ps.getInput(t);
+      
+      
+      
+   
+       
+        
+    }
+    
+    //multi year 
+ 
+    // add employee
+    // conduct interview
+    // add products
+
+    //buy shares
+    //buy software
+    //buy hardware
+
+    //view employee info
+    //view all products and info
+    // view revenue info
+    // view sorted Lists
+    
+  
+}
+
+
+
+package oops.project;
+
+import java.io.Serializable;
+import java.util.Objects;
+import java.util.Stack;
+
+ 
+public interface Employee extends Serializable {
+
+    boolean equals(Object obj);
+
+    String getAddress();
+
+    String getDOB();
+
+    String getID();
+
+    String getName();
+
+    String getPhoneNo();
+
+    String getPositionHeld();
+
+    Stack<String> getPositionsHeld();
+
+    int hashCode();
+
+    void setAddress(String Address);
+
+    void setDOB(String DOB);
+
+    void setID(String ID);
+
+    void setName(String name);
+
+    void setPhoneNo(String phoneNo);
+
+    void setPositionsHeld(Stack<String> positionsHeld);
+
+    void setPostionsHeld(String position);
+    
+}
+
+
+
+                                                                   //ADD EMPLOYEE DEPARTMENT WITH HASH MAP
+ abstract class AbstractEmployee implements Employee {
+    private static final long serialVersionUID = 1L;
+
+
+    
+    private String ID;
+    private String name;
+    private String DOB;
+    private String Address;
+    private String phoneNo;
+    private Stack<String> positionsHeld;
+
+    public AbstractEmployee() {
+        
+       positionsHeld=new Stack<>();
+ 
+    }
+    
+    public AbstractEmployee(String ID,String name, String DOB, String Address, String phoneNo, Stack<String> positionsHeld) {
+        this.ID=ID;
+        this.name = name;
+        this.DOB = DOB;
+        this.Address = Address;
+        this.phoneNo = phoneNo;
+        this.positionsHeld = positionsHeld;
+    
+        EmployeeList.getInstance().addEmployee(this);
+    
+    }
+    
+    
+    @Override
+    public String getID() {
+        return ID;
+    }
+
+    @Override
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+    
+    
+
+
+    @Override
+    public Stack<String> getPositionsHeld() {
+        return positionsHeld;
+    }
+
+    @Override
+    public void setPositionsHeld(Stack<String> positionsHeld) {
+        this.positionsHeld = positionsHeld;
+    }
+    
+    @Override
+    public void setPostionsHeld(String position)
+    {
+        positionsHeld.add(position);
+    }
+    
+    @Override
+    public String getPositionHeld()
+    {
+    
+    return positionsHeld.peek();
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String getDOB() {
+        return DOB;
+    }
+
+    @Override
+    public void setDOB(String DOB) {
+        this.DOB = DOB;
+    }
+
+    @Override
+    public String getAddress() {
+        return Address;
+    }
+
+    @Override
+    public void setAddress(String Address) {
+        this.Address = Address;
+    }
+
+    @Override
+    public String getPhoneNo() {
+        return phoneNo;
+    }
+
+    @Override
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
+    }
+    
+    
+        @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.ID);
+        hash = 97 * hash + Objects.hashCode(this.name);
+        hash = 97 * hash + Objects.hashCode(this.DOB);
+        hash = 97 * hash + Objects.hashCode(this.Address);
+        hash = 97 * hash + Objects.hashCode(this.phoneNo);
+        hash = 97 * hash + Objects.hashCode(this.positionsHeld);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final AbstractEmployee other = (AbstractEmployee) obj;
+        if (!Objects.equals(this.ID, other.ID)) {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.DOB, other.DOB)) {
+            return false;
+        }
+        if (!Objects.equals(this.Address, other.Address)) {
+            return false;
+        }
+        if (!Objects.equals(this.phoneNo, other.phoneNo)) {
+            return false;
+        }
+        if (!Objects.equals(this.positionsHeld, other.positionsHeld)) {
+            return false;
+        }
+        return true;
+    }
+
+
+    
+}
+
+
+
+class SoftwareEmployee extends AbstractEmployee
+{
+    private static final long serialVersionUID = 1L;
+
+    SoftwareEmployeePositions softwareEmployeePositions=SoftwareEmployeePositions.getInstance();
+    
+    public SoftwareEmployee() {
+        super();
+        EmployeeList.getInstance().addEmployee(this);
+    }
+    
+    public int getEmployeeSalary()
+    {
+    
+        return softwareEmployeePositions.softwareEmployeePositionsSalary.get(softwareEmployeePositions.softwareEmployeePositions.indexOf(this.getPositionHeld()));
+    
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final SoftwareEmployee other = (SoftwareEmployee) obj;
+        return true;
+    }
+
+
+
+}
+
+
+class HardwareEmployee extends AbstractEmployee
+{
+    private static final long serialVersionUID = 1L;
+
+    HardwareEmployeePositions hardwareEmployeePositions=HardwareEmployeePositions.getInstance();
+    
+    public HardwareEmployee() {
+        super();
+        EmployeeList.getInstance().addEmployee(this);
+    }
+    public int getEmployeeSalary()
+    {
+    
+        return hardwareEmployeePositions.hardwareEmployeePositionsSalary.get(hardwareEmployeePositions.hardwareEmployeePositions.indexOf(this.getPositionHeld()));
+    
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final HardwareEmployee other = (HardwareEmployee) obj;
+        return true;
+    }
+
+
+}
+
+
+class ManagementEmployee extends AbstractEmployee
+{
+    private static final long serialVersionUID = 1L;
+
+    ManagementEmployeePositions managementEmployeePositions=ManagementEmployeePositions.getInstance();
+    
+    public ManagementEmployee() {
+        super();
+        EmployeeList.getInstance().addEmployee(this);
+    }
+ 
+     public int getEmployeeSalary()
+    {
+    
+        return managementEmployeePositions.managementEmployeePositionsSalary.get(managementEmployeePositions.managementEmployeePositions.indexOf(this.getPositionHeld()));
+    
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ManagementEmployee other = (ManagementEmployee) obj;
+        return true;
+    }
+     
+     
+    
+}
+package oops.project;
+
+
+public enum EmployeeAttributes {
+    
+   name,DOB,Address,phoneNo,positionsHeld;
+    
+}
+
+package oops.project;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+
+public class EmployeeDepartment {
+    
+    private HashMap<String,List<Employee>> employeeDepartment=new HashMap<>();
+
+    public HashMap<String,List<Employee>> getEmployeeDepartment() {
+        return employeeDepartment;
+    }
+
+    public void setEmployeeDepartment(HashMap<String,List<Employee>> employeeDepartment) {
+        this.employeeDepartment = employeeDepartment;
+    }
+
+    public void addToDepartment(String department,Employee employee)
+    {
+       
+    if(employeeDepartment.containsKey(department))    
+    employeeDepartment.get(department).add(employee);
+    
+    else
+    {        
+    List<Employee> employeeList =new ArrayList<>();
+    employeeDepartment.put(department,employeeList);
+    employeeList.add(employee);
+    }
+    
+    }
+
+    public EmployeeDepartment() {
+   
+        
+    }
+    
+    
+    
+}
+
+package oops.project;
+
+public class EmployeeFactory extends AbstractProductEmployeeFactory
+{
+
+    @Override
+    public Product getProduct(String productType) {
+       return null;
+       
+    }
+
+    @Override
+    public Employee getEmployee(String employeeType) {
+        
+        Employee employee = null;
+        
+        if("SoftwareEmployee".equals(employeeType))employee=new SoftwareEmployee();
+        if("HardwareEmployee".equals(employeeType))employee=new HardwareEmployee();
+        if("ManagementEmployee".equals(employeeType))employee=new ManagementEmployee();
+        
+        return employee;
+        
+    }
+    
+    
+    
+    
+}
+
+package oops.project;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
+public class EmployeeInput<T extends Employee> {
+    
+    void getInput(T employee)
+    {
+    
+        
+        BufferedReader dd = new BufferedReader(new InputStreamReader(System.in));
+        
+        try {
+            
+            
+            employee.setID(null);
+            employee.setName(null);
+            employee.setAddress(null);
+            employee.setDOB(null);
+            employee.setPhoneNo(null);
+            
+            
+            StringTokenizer st= new StringTokenizer(dd.readLine());
+            
+            while(st.hasMoreTokens())
+                employee.setPostionsHeld(st.nextToken());
+        } catch (IOException ex) {
+            Logger.getLogger(EmployeeInput.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            
+            
+      
+       
+    }
+    
+    
+    
+    
+}
+
+package oops.project;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Stack;
+
+
+//IndexOutOfBoundsException
+
+public class EmployeeList implements Iterable<Employee> {
+
+    private final List<Employee> employeeList;
+    
+    @Override
+    public Iterator<Employee> iterator() {
+        return employeeList.iterator();
+    }
+
+    private EmployeeList() {
+        
+        employeeList=new ArrayList<>();
+    }
+ 
+    
+    void addEmployee(String ID,String name, String DOB, String Address, String phoneNo,Stack<String> positionsHeld)
+    {
+        employeeList.add(new AbstractEmployee(ID,name,DOB,Address,phoneNo,positionsHeld) {private static final long serialVersionUID = 1L;
+        });
+    }
+
+    void addEmployee(Employee employee)
+    {
+    employeeList.add(employee);
+    }
+    
+    private List<Employee> getEmployeeList() {
+        return employeeList;
+    }
+    
+
+        public static EmployeeList getInstance() {
+        return EmployeeListHolder.INSTANCE;
+    }
+    
+    private static class EmployeeListHolder {
+
+        private static final EmployeeList INSTANCE = new EmployeeList();
+    }
+    
+}
+package oops.project;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
+public class EmployeeOutput<T extends Employee> {
+    
+    void setOutput(T employee)
+    {
+    
+        
+        BufferedReader dd = new BufferedReader(new InputStreamReader(System.in));
+        
+        try {
+            
+            
+            employee.setID(null);
+            employee.setName(null);
+            employee.setAddress(null);
+            employee.setDOB(null);
+            employee.setPhoneNo(null);
+            
+            
+            StringTokenizer st= new StringTokenizer(dd.readLine());
+            
+            while(st.hasMoreTokens())
+                employee.setPostionsHeld(st.nextToken());
+        } catch (IOException ex) {
+            Logger.getLogger(EmployeeInput.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            
+            
+      
+       
+    }
+}
+    
+    
+package oops.project;
+
+
+public class FactoryProducer {
+    
+    public static AbstractProductEmployeeFactory getFactory(String factoryChoice)
+    {
+    if("Product".equals(factoryChoice))
+    return new ProductFactory();
+    
+    if("Employee".equals(factoryChoice))
+    return new EmployeeFactory();    
+    
+    return null;
+    }
+    
+}
+package oops.project;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public interface HR {
+
+    void takeInterviews(List<Employee> employeeList);
+
+    void doPromotions(List<Employee> employeeList, List<Boolean> promotionStatus);
+
+    void setEmployeeInfo(Employee employee, HumanResource.EmployeeInfo... employeeInfo);
+
+    void getEmployeeInfo(Employee employee, HumanResource.EmployeeInfo... employeeInfo);
+
+}
+
+abstract class HumanResource implements HR {
+
+    @Override
+    public void takeInterviews(List<Employee> employeeList) {
+
+        List<Boolean> promotionStatus = new ArrayList<>();
+        Boolean passed = true;
+
+        employeeList.stream().forEach((_item) -> {
+            if (passed) {
+                promotionStatus.add(passed);
+            } else {
+                promotionStatus.add(!passed);
+            }
+        });
+
+        doPromotions(employeeList, promotionStatus);
+
+    }
+
+    @Override
+    public void doPromotions(List<Employee> employeeList, List<Boolean> promotionStatus) {
+
+        HardwareEmployeePositions hardwareEmployeePostions = HardwareEmployeePositions.getInstance();
+        ManagementEmployeePositions managementEmployeePositions = ManagementEmployeePositions.getInstance();
+        SoftwareEmployeePositions softwareEmployeePostions = SoftwareEmployeePositions.getInstance();
+
+        Iterator<Employee> employeeIterator = employeeList.iterator();
+
+        for (Boolean promotion : promotionStatus) {
+            Employee employee = employeeIterator.next();
+
+            if (promotion) {
+
+                if (employee.getClass() == SoftwareEmployee.class) {
+
+                    employee.setPostionsHeld(softwareEmployeePostions.softwareEmployeePositions.get(softwareEmployeePostions.softwareEmployeePositions.indexOf(employee.getPositionsHeld().peek()) + 1));
+
+                }
+
+                if (employee.getClass() == HardwareEmployee.class) {
+                    employee.setPostionsHeld(hardwareEmployeePostions.hardwareEmployeePositions.get(hardwareEmployeePostions.hardwareEmployeePositions.indexOf(employee.getPositionsHeld().peek()) + 1));
+                }
+
+                if (employee.getClass() == ManagementEmployee.class) {
+                    employee.setPostionsHeld(managementEmployeePositions.managementEmployeePositions.get(managementEmployeePositions.managementEmployeePositions.indexOf(employee.getPositionsHeld().peek()) + 1));
+
+                }
+            }
+
+        }
+    }
+
+    @Override
+    public void setEmployeeInfo(Employee employee, EmployeeInfo... employeeInfo) {
+
+    }
+
+    @Override
+    public void getEmployeeInfo(Employee employee, EmployeeInfo... employeeInfo) {
+
+    }
+
+    protected static class EmployeeInfo {
+
+        String key;
+        String value;
+    }
+
+}
+package oops.project;
+
+import java.util.List;
+import java.util.Objects;
+
+public interface Hardware {                                                             
+
+    void printPartDetails();
+
+    void compareWithOtherHardwareProducts(Product... product);
+
+}
+
+class Tablets extends AbstractProduct implements Hardware {
+
+    private static final long serialVersionUID = 1L;
+
+    private String screenSize;
+    private String processor;
+    private String OS;
+    private String storage;
+    private Boolean cellular;
+
+    public Tablets(String category, String ID, String name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
+        super(category, ID, name, price, model, features, volumesAvailable, totalVolumes, volumesSold, inPrice, outPrice);
+    }
+
+    Tablets() {
+        super();
+        ProductList.getInstance().addProduct(this);
+    }
+
+    public String getScreenSize() {
+        return screenSize;
+    }
+
+    public String getProcessor() {
+        return processor;
+    }
+
+    public String getOS() {
+        return OS;
+    }
+
+    public String getStorage() {
+        return storage;
+    }
+
+    public Boolean getCellular() {
+        return cellular;
+    }
+
+    public void setScreenSize(String screenSize) {
+        this.screenSize = screenSize;
+    }
+
+    public void setProcessor(String processor) {
+        this.processor = processor;
+    }
+
+    public void setOS(String OS) {
+        this.OS = OS;
+    }
+
+    public void setStorage(String storage) {
+        this.storage = storage;
+    }
+
+    public void setCellular(Boolean cellular) {
+        this.cellular = cellular;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.screenSize);
+        hash = 97 * hash + Objects.hashCode(this.processor);
+        hash = 97 * hash + Objects.hashCode(this.OS);
+        hash = 97 * hash + Objects.hashCode(this.storage);
+        hash = 97 * hash + Objects.hashCode(this.cellular);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Tablets other = (Tablets) obj;
+        if (!Objects.equals(this.screenSize, other.screenSize)) {
+            return false;
+        }
+        if (!Objects.equals(this.processor, other.processor)) {
+            return false;
+        }
+        if (!Objects.equals(this.OS, other.OS)) {
+            return false;
+        }
+        if (!Objects.equals(this.storage, other.storage)) {
+            return false;
+        }
+        if (!Objects.equals(this.cellular, other.cellular)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void compareWithOtherHardwareProducts(Product... product) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void printPartDetails() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+}
+
+class Phones extends AbstractProduct implements Hardware {
+
+    private static final long serialVersionUID = 1L;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    private String screenSize;
+    private String processor;
+    private String OS;
+    private String storage;
+
+    public Phones(String category, String ID, String name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
+        super(category, ID, name, price, model, features, volumesAvailable, totalVolumes, volumesSold, inPrice, outPrice);
+    }
+
+    Phones() {
+        super();
+        ProductList.getInstance().addProduct(this);
+    }
+
+    public String getScreenSize() {
+        return screenSize;
+    }
+
+    public String getProcessor() {
+        return processor;
+    }
+
+    public String getOS() {
+        return OS;
+    }
+
+    public String getStorage() {
+        return storage;
+    }
+
+    public void setScreenSize(String screenSize) {
+        this.screenSize = screenSize;
+    }
+
+    public void setProcessor(String processor) {
+        this.processor = processor;
+    }
+
+    public void setOS(String OS) {
+        this.OS = OS;
+    }
+
+    public void setStorage(String storage) {
+        this.storage = storage;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 71 * hash + Objects.hashCode(this.screenSize);
+        hash = 71 * hash + Objects.hashCode(this.processor);
+        hash = 71 * hash + Objects.hashCode(this.OS);
+        hash = 71 * hash + Objects.hashCode(this.storage);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Phones other = (Phones) obj;
+        if (!Objects.equals(this.screenSize, other.screenSize)) {
+            return false;
+        }
+        if (!Objects.equals(this.processor, other.processor)) {
+            return false;
+        }
+        if (!Objects.equals(this.OS, other.OS)) {
+            return false;
+        }
+        if (!Objects.equals(this.storage, other.storage)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void compareWithOtherHardwareProducts(Product... product) {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
+
+    @Override
+    public void printPartDetails() {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
+
+}
+
+class Laptops extends AbstractProduct implements Hardware {
+
+    private static final long serialVersionUID = 1L;
+
+    private String processor;
+    private String OS;
+    private String graphicsCard;
+    private String ram;
+    private String storage;
+    private Boolean flash;
+    private Boolean retina;
+
+    public Laptops(String category, String ID, String name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
+        super(category, ID, name, price, model, features, volumesAvailable, totalVolumes, volumesSold, inPrice, outPrice);
+    }
+
+    Laptops() {
+        super();
+        ProductList.getInstance().addProduct(this);
+    }
+
+    public String getProcessor() {
+        return processor;
+    }
+
+    public String getOS() {
+        return OS;
+    }
+
+    public String getGraphicsCard() {
+        return graphicsCard;
+    }
+
+    public String getRam() {
+        return ram;
+    }
+
+    public String getStorage() {
+        return storage;
+    }
+
+    public Boolean getFlash() {
+        return flash;
+    }
+
+    public Boolean getRetina() {
+        return retina;
+    }
+
+    public void setProcessor(String processor) {
+        this.processor = processor;
+    }
+
+    public void setOS(String OS) {
+        this.OS = OS;
+    }
+
+    public void setGraphicsCard(String graphicsCard) {
+        this.graphicsCard = graphicsCard;
+    }
+
+    public void setRam(String ram) {
+        this.ram = ram;
+    }
+
+    public void setStorage(String storage) {
+        this.storage = storage;
+    }
+
+    public void setFlash(Boolean flash) {
+        this.flash = flash;
+    }
+
+    public void setRetina(Boolean retina) {
+        this.retina = retina;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.processor);
+        hash = 89 * hash + Objects.hashCode(this.OS);
+        hash = 89 * hash + Objects.hashCode(this.graphicsCard);
+        hash = 89 * hash + Objects.hashCode(this.ram);
+        hash = 89 * hash + Objects.hashCode(this.storage);
+        hash = 89 * hash + Objects.hashCode(this.flash);
+        hash = 89 * hash + Objects.hashCode(this.retina);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Laptops other = (Laptops) obj;
+        if (!Objects.equals(this.processor, other.processor)) {
+            return false;
+        }
+        if (!Objects.equals(this.OS, other.OS)) {
+            return false;
+        }
+        if (!Objects.equals(this.graphicsCard, other.graphicsCard)) {
+            return false;
+        }
+        if (!Objects.equals(this.ram, other.ram)) {
+            return false;
+        }
+        if (!Objects.equals(this.storage, other.storage)) {
+            return false;
+        }
+        if (!Objects.equals(this.flash, other.flash)) {
+            return false;
+        }
+        if (!Objects.equals(this.retina, other.retina)) {
+            return false;
+        }
+        return true;
+    }
+
+   
+    @Override
+    public void compareWithOtherHardwareProducts(Product... product) {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
+
+    @Override
+    public void printPartDetails() {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
+
+}
+
+class Acessories extends AbstractProduct implements Hardware {
+
+    private static final long serialVersionUID = 1L;
+
+    public Acessories(String category, String ID, String name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
+        super(category, ID, name, price, model, features, volumesAvailable, totalVolumes, volumesSold, inPrice, outPrice);
+    }
+
+    Acessories() {
+        super();
+        ProductList.getInstance().addProduct(this);
+    }
+
+    @Override
+    public void compareWithOtherHardwareProducts(Product... product) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void printPartDetails() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+}
+
+package oops.project;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+public final class HardwareEmployeePositions {
+   
+   List <String> hardwareEmployeePositions;
+   List <Integer> hardwareEmployeePositionsSalary;
+    
+  
+   private HardwareEmployeePositions()
+           {
+              hardwareEmployeePositions=new ArrayList<>(); 
+              hardwareEmployeePositionsSalary=new ArrayList<>();    
+              hardwareEmployeePositions.add("BeginnerHardwareDeveloper");
+              hardwareEmployeePositionsSalary.add(10000);
+              hardwareEmployeePositions.add("DatabaseAdministrator");
+              hardwareEmployeePositionsSalary.add(15000);
+              hardwareEmployeePositions.add("PrimaryHardwareDeveloper");
+              hardwareEmployeePositionsSalary.add(20000);
+              hardwareEmployeePositions.add("PrincipalHardwareArchitect");
+              hardwareEmployeePositionsSalary.add(25000);
+              hardwareEmployeePositions.add("SeniorHardwareArchitect");
+              hardwareEmployeePositionsSalary.add(30000);
+              hardwareEmployeePositions.add("ProductLead");
+              hardwareEmployeePositionsSalary.add(35000);
+              hardwareEmployeePositions.add("DepartmentHead");                                  
+              hardwareEmployeePositionsSalary.add(40000);
+
+           }
+   
+   
+      public static HardwareEmployeePositions getInstance() {
+        return NewHardwareEmployeePositionsHolder.INSTANCE;
+    }
+    
+    private static class NewHardwareEmployeePositionsHolder {
+
+        private static final HardwareEmployeePositions INSTANCE = new HardwareEmployeePositions();
+    }
+   
+
+}
+
+
+
+package oops.project;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class ManagementEmployeePositions {
+   
+    
+    List <String> managementEmployeePositions;
+    List <Integer> managementEmployeePositionsSalary;
+    
+    
+       private ManagementEmployeePositions() {
+         
+           managementEmployeePositions=new ArrayList<>();
+           
+           managementEmployeePositionsSalary=new ArrayList<>();
+           managementEmployeePositions.add("CTO");
+           managementEmployeePositionsSalary.add(50000);
+           managementEmployeePositions.add("CFO");
+           managementEmployeePositionsSalary.add(80000);
+           managementEmployeePositions.add("CEO");
+           managementEmployeePositionsSalary.add(100000);
+            
+    }
+    
+    public static ManagementEmployeePositions getInstance() {
+        return ManagementEmployeePositionsHolder.INSTANCE;
+    }
+    
+    private static class ManagementEmployeePositionsHolder {
+
+        private static final ManagementEmployeePositions INSTANCE = new ManagementEmployeePositions();
+    }
+}
+
+package oops.project;
+
+
+public class MarketingOperations {
+    
+   
+}
+package oops.project;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import static java.lang.System.out;
+import java.net.URL;
+
+public class NewClass {
+
+    public static void main(String args[]) throws Exception {
+
+        File f = new File("/Volumes/Macintosh HD/Users/Devanshu/desktop/JavaFormatSourcesCommand.java");
+       
+
+        
+
+        File tempUnformattedSource = File.createTempFile("TemporaryUnformattedSource", ".java");
+        tempUnformattedSource.deleteOnExit();
+
+        String tempUnformattedSourcePath = tempUnformattedSource.getAbsolutePath();
+
+        copy(f, tempUnformattedSource);
+
+        InputStream formattedSourceStream = new FileInputStream(f);
+        InputStream tempUnformattedSourceStream = new FileInputStream(tempUnformattedSource);
+
+        System.out.println(contentEquals(formattedSourceStream,tempUnformattedSourceStream));
+        printfile(tempUnformattedSource);
+        
+        formattedSourceStream.close();
+        tempUnformattedSourceStream.close();
+
+      //  new NewClass().call();
+    }
+
+    private static void copy(File source, File target) throws IOException {
+
+        InputStream in = new FileInputStream(source);
+        OutputStream out = new FileOutputStream(target);
+
+        // Copy the bits from instream to outstream
+        byte[] buf = new byte[1024];
+        int len;
+
+        while ((len = in.read(buf)) > 0) {
+            out.write(buf, 0, len);
+        }
+
+        in.close();
+        out.close();
+    }
+
+    static boolean contentEquals(InputStream input1, InputStream input2) throws IOException {
+
+        int ch = input1.read();
+        while (-1 != ch) {
+            int ch2 = input2.read();
+            if (ch != ch2) {
+                return false;
+            }
+            ch = input1.read();
+        }
+
+        int ch2 = input2.read();
+        return (ch2 == -1);
+    }
+
+    private void call() {
+        URL resource = getClass().getResource("Hardware.java");
+        System.out.println(resource);
+
+    }
+    
+    
+   private static void printfile(File source) throws FileNotFoundException, IOException
+    {
+     InputStream in = new FileInputStream(source);
+     
+     byte[] buf = new byte[1024];
+        int len;
+
+        while ((len = in.read(buf)) > 0) {
+            out.write(buf, 0, len);
+        }
+     
+    }
+}
+
+package oops.project;
+
+
+public class NewSingleton {
+    
+    private NewSingleton() {
+    }
+    
+    public static NewSingleton getInstance() {
+        return NewSingletonHolder.INSTANCE;
+    }
+    
+    private static class NewSingletonHolder {
+
+        private static final NewSingleton INSTANCE = new NewSingleton();
+    }
+}
+
+package oops.project;
+
+public class OOPSProject {
+
+   
+    public static void main(String[] args) {
+        
+        
+    }
+    
+}
+
+
+package oops.project;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+public interface Product extends Serializable{
+    
+//    void sell();
+//    void buy();
+//    void takeBack();    
+    
+    void addFeatures(String feature);
+
+    void buy();
+
+    void buy(int volume);
+
+    boolean equals(Object obj);
+
+    String getCategory();
+
+    /**
+     * @return the features
+     */
+    List<String> getFeatures();
+
+    String getID();
+
+    /**
+     * @return the inPrice
+     */
+    int getInPrice();
+
+    /**
+     * @return the model
+     */
+    int getModel();
+
+    String getName();
+
+    /**
+     * @return the outPrice
+     */
+    int getOutPrice();
+
+    /**
+     * @return the price
+     */
+    int getPrice();
+
+    /**
+     * @return the totalVolumes
+     */
+    int getTotalVolumes();
+
+    /**
+     * @return the volumesAvailable
+     */
+    int getVolumesAvailable();
+
+    /**
+     * @return the volumesSold
+     */
+    int getVolumesSold();
+
+    int hashCode();
+
+    void sell();
+
+    void sell(int volume);
+
+    void setCategory(String category);
+
+    /**
+     * @param features the features to set
+     */
+    void setFeatures(List<String> features);
+
+    void setID(String ID);
+
+    /**
+     * @param inPrice the inPrice to set
+     */
+    void setInPrice(int inPrice);
+
+    /**
+     * @param model the model to set
+     */
+    void setModel(int model);
+
+    void setName(String name);
+
+    /**
+     * @param outPrice the outPrice to set
+     */
+    void setOutPrice(int outPrice);
+
+    /**
+     * @param price the price to set
+     */
+    void setPrice(int price);
+
+    /**
+     * @param totalVolumes the totalVolumes to set
+     */
+    void setTotalVolumes(int totalVolumes);
+
+    /**
+     * @param volumesAvailable the volumesAvailable to set
+     */
+    void setVolumesAvailable(int volumesAvailable);
+
+    /**
+     * @param volumesSold the volumesSold to set
+     */
+    void setVolumesSold(int volumesSold);
+
+    void takeBack();
+
+    void takeBack(int volume);
+    
+}
+
+
+abstract class AbstractProduct implements Product
+{   
+    private String category;
+    private static final long serialVersionUID = 1L;
+    private String ID;
+    private String name;
+    private int price;
+    private int model;
+    private List<String> features;
+    private int volumesAvailable;
+    private int totalVolumes;
+    private int volumesSold;
+    private int inPrice;
+    private int outPrice;
+
+    public AbstractProduct(String category,String ID,String name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
+        
+        this.category=category;
+        this.ID=ID;
+        this.name = name;
+        this.price = price;
+        this.model = model;
+        this.features = features;
+        this.volumesAvailable = volumesAvailable;
+        this.totalVolumes = totalVolumes;
+        this.volumesSold = volumesSold;
+        this.inPrice = inPrice;
+        this.outPrice = outPrice;
+        
+        ProductList.getInstance().addProduct(this);
+    }
+
+    public AbstractProduct(String Category) {
+        
+        this.category=category;
+        features= new ArrayList<>();  
+        ProductList.getInstance().addProduct(this);
+      
+    }
+
+    public AbstractProduct() {
+      features= new ArrayList<>(); 
+     
+    }
+
+    
+    
+    
+    /**
+     * @return the price
+     */
+    @Override
+    public int getPrice() {
+        return price;
+    }
+
+    /**
+     * @param price the price to set
+     */
+    @Override
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    /**
+     * @return the model
+     */
+    @Override
+    public int getModel() {
+        return model;
+    }
+
+    /**
+     * @param model the model to set
+     */
+    @Override
+    public void setModel(int model) {
+        this.model = model;
+    }
+
+    /**
+     * @return the features
+     */
+    @Override
+    public List<String> getFeatures() {
+        return features;
+    }
+
+    /**
+     * @param features the features to set
+     */
+    @Override
+    public void setFeatures(List<String> features) {
+        this.features = features;
+    }
+    
+    @Override
+    public void addFeatures(String feature)
+    {
+    features.add(feature);
+    
+    }
+
+    /**
+     * @return the volumesAvailable
+     */
+    @Override
+    public int getVolumesAvailable() {
+        return volumesAvailable;
+    }
+
+    /**
+     * @param volumesAvailable the volumesAvailable to set
+     */
+    @Override
+    public void setVolumesAvailable(int volumesAvailable) {
+        this.volumesAvailable = volumesAvailable;
+    }
+
+    /**
+     * @return the totalVolumes
+     */
+    @Override
+    public int getTotalVolumes() {
+        return totalVolumes;
+    }
+
+    /**
+     * @param totalVolumes the totalVolumes to set
+     */
+    @Override
+    public void setTotalVolumes(int totalVolumes) {
+        this.totalVolumes = totalVolumes;
+    }
+
+    /**
+     * @return the volumesSold
+     */
+    @Override
+    public int getVolumesSold() {
+        return volumesSold;
+    }
+
+    /**
+     * @param volumesSold the volumesSold to set
+     */
+    @Override
+    public void setVolumesSold(int volumesSold) {
+        this.volumesSold = volumesSold;
+    }
+
+    /**
+     * @return the inPrice
+     */
+    @Override
+    public int getInPrice() {
+        return inPrice;
+    }
+
+    /**
+     * @param inPrice the inPrice to set
+     */
+    @Override
+    public void setInPrice(int inPrice) {
+        this.inPrice = inPrice;
+    }
+
+    /**
+     * @return the outPrice
+     */
+    @Override
+    public int getOutPrice() {
+        return outPrice;
+    }
+
+    /**
+     * @param outPrice the outPrice to set
+     */
+    @Override
+    public void setOutPrice(int outPrice) {
+        this.outPrice = outPrice;
+    }
+
+    @Override
+    public void sell() {
+        
+        if(volumesAvailable>1)
+        volumesAvailable--;
+        volumesSold++;
+       
+    }
+
+    @Override
+    public void buy() {
+        
+        volumesAvailable++;
+        totalVolumes++;
+    }
+
+    @Override
+    public void takeBack() {
+       
+        volumesAvailable++;
+        volumesSold--;
+      
+    }
+    
+    
+    @Override
+    public void sell(int volume) {
+       
+        if(volumesAvailable>volume)
+        {
+        volumesAvailable-=volume;
+        volumesSold+=volume;
+          
+        }      
+    }
+
+    @Override
+    public void buy(int volume) {
+
+        volumesAvailable+=volume;
+        totalVolumes+=volume;
+ 
+    }
+
+    
+    @Override
+    public void takeBack(int volume) {
+        
+        if(volumesAvailable>volume)
+        {
+        volumesAvailable+=volume;
+        volumesSold-=volume;
+          
+        }  
+      
+    }
+
+    @Override
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    @Override
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String getCategory() {
+        return category;
+    }
+
+    @Override
+    public String getID() {
+        return ID;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.category);
+        hash = 67 * hash + Objects.hashCode(this.ID);
+        hash = 67 * hash + Objects.hashCode(this.name);
+        hash = 67 * hash + this.price;
+        hash = 67 * hash + this.model;
+        hash = 67 * hash + Objects.hashCode(this.features);
+        hash = 67 * hash + this.volumesAvailable;
+        hash = 67 * hash + this.totalVolumes;
+        hash = 67 * hash + this.volumesSold;
+        hash = 67 * hash + this.inPrice;
+        hash = 67 * hash + this.outPrice;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final AbstractProduct other = (AbstractProduct) obj;
+        if (!Objects.equals(this.category, other.category)) {
+            return false;
+        }
+        if (!Objects.equals(this.ID, other.ID)) {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (this.price != other.price) {
+            return false;
+        }
+        if (this.model != other.model) {
+            return false;
+        }
+        if (!Objects.equals(this.features, other.features)) {
+            return false;
+        }
+        if (this.volumesAvailable != other.volumesAvailable) {
+            return false;
+        }
+        if (this.totalVolumes != other.totalVolumes) {
+            return false;
+        }
+        if (this.volumesSold != other.volumesSold) {
+            return false;
+        }
+        if (this.inPrice != other.inPrice) {
+            return false;
+        }
+        if (this.outPrice != other.outPrice) {
+            return false;
+        }
+        return true;
+    }
+
+    
+    
+
+}
+
+package oops.project;
+
+
+public enum ProductAttributes {
+    
+    name, price, model, features, volumesAvailable, totalVolumes, volumesSold, inPrice, outPrice;
+    
+    
+    
+}
+
+package oops.project;
+
+
+public class ProductFactory extends AbstractProductEmployeeFactory
+{
+
+    @Override
+    public Product getProduct(String productType) {
+                   
+    Product product = null;
+        
+    if("Phones".equals(productType))product= new Phones();
+    if("Laptops".equals(productType))product= new Laptops();
+    if("Tablets".equals(productType))product= new Tablets();
+    if("Acessories".equals(productType))product= new Acessories();
+    if("SAAS".equals(productType))product= new SAAS();
+    if("OS".equals(productType))product= new OS();
+    if("Open Source".equals(productType))product= new OpenSource();
+    if("PAAS".equals(productType))product= new PAAS();        
+         
+    return product;
+    }
+
+    @Override
+    public Employee getEmployee(String employeeType) {
+       return null;
+    }
+
+}
+package oops.project;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public final class ProductInput<T extends Product> {
+
+    void getInput(T product) {
+
+        BufferedReader dd = new BufferedReader(new InputStreamReader(System.in));
+
+        try {
+
+            System.out.println("Product Details");
+
+            product.setName(dd.readLine());
+            product.setID(dd.readLine());
+            product.setCategory(dd.readLine());
+            product.setModel(Integer.parseInt(dd.readLine()));
+
+            StringTokenizer st = new StringTokenizer(dd.readLine());
+
+            while (st.hasMoreTokens()) {
+                product.addFeatures(st.nextToken());
+            }
+
+            product.setInPrice(Integer.parseInt(dd.readLine()));
+            product.setPrice(Integer.parseInt(dd.readLine()));
+            product.setOutPrice(Integer.parseInt(dd.readLine()));
+
+            product.setVolumesSold(Integer.parseInt(dd.readLine()));
+            product.setVolumesAvailable(Integer.parseInt(dd.readLine()));
+            product.setTotalVolumes(Integer.parseInt(dd.readLine()));
+
+            if (product.getClass() == Tablets.class) {
+                Tablets tablet = (Tablets) product;
+
+                //   System.out.println("Hello");
+                tablet.setCellular(Boolean.TRUE);
+                tablet.setOS(null);
+                tablet.setProcessor(null);
+                tablet.setScreenSize(null);
+                tablet.setStorage(null);
+
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(ProductInput.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        if (product.getClass() == Laptops.class) {
+
+            Laptops laptop = (Laptops) product;
+            // System.out.println("fuck");
+
+            laptop.setFlash(Boolean.TRUE);
+            laptop.setGraphicsCard(null);
+            laptop.setOS(null);
+            laptop.setProcessor(null);
+            laptop.setRam(null);
+            laptop.setRetina(Boolean.TRUE);
+            laptop.setStorage(null);
+
+        }
+
+        if (product.getClass() == Phones.class) {
+            Phones phone = (Phones) product;
+
+            phone.setOS(null);
+            phone.setProcessor(null);
+            phone.setScreenSize(null);
+            phone.setStorage(null);
+
+        }
+
+        if (product.getClass() == Acessories.class) {
+            Acessories acessory = (Acessories) product;
+
+        }
+
+        if (product.getClass() == OS.class) {
+
+            OS os = (OS) product;
+
+            os.setCodeSize(null);
+            os.setCodename(null);
+            os.setMinProcessor(null);
+            os.setMinRam(null);
+            os.setReleaseYear(null);
+            os.setSupported(Boolean.TRUE);
+            os.setVersion(null);
+
+        }
+
+        if (product.getClass() == PAAS.class) {
+
+            PAAS paas = (PAAS) product;
+
+        }
+
+        if (product.getClass() == OpenSource.class) {
+
+            OpenSource openSource = (OpenSource) product;
+
+            openSource.setContributors(null);
+            openSource.setIrc(null);
+            openSource.setProductLead(null);
+
+        }
+
+        if (product.getClass() == SAAS.class) {
+            SAAS saas = (SAAS) product;
+
+            //    saas.setMinServerCores(minServerCores);
+            //  saas.setSubscriptionYears(subscriptionYears);
+        }
+
+    }
+
+}
+
+package oops.project;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class ProductList implements Iterable<Product> {
+
+    private List<Product> productList;
+    
+    @Override
+    public Iterator<Product> iterator() {
+     return productList.iterator();
+    }
+
+    private ProductList() {
+        productList=new ArrayList<>();
+    } 
+    
+    public void addProduct(Product product)
+    {
+    
+    productList.add(product);
+    
+    }        
+    
+     private List<Product> getProductList() {
+        return productList;
+    }   
+     
+    public static ProductList getInstance() {
+        return ProductListHolder.INSTANCE;
+    }
+    
+    private static class ProductListHolder {
+
+        private static final ProductList INSTANCE = new ProductList();
+    }
+    
+
+}
+package oops.project;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.List;
+import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public final class ProductOutput<T extends Product> {
+
+
+    void getOutput(T product) {
+
+        BufferedReader dd = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.println("Product Details");
+        product.getName();
+        product.getID();
+        product.getCategory();
+        product.getModel();
+        
+      List<String> productFeatures= product.getFeatures();
+        
+      
+      for(String s:productFeatures)
+      {
+        System.out.println(s);
+      }
+      
+      
+        product.getInPrice();
+        product.getPrice();
+        product.getOutPrice();
+        product.getVolumesSold();
+        product.getVolumesAvailable();
+        product.getTotalVolumes();
+        if (product.getClass() == Tablets.class) {
+            Tablets tablet = (Tablets) product;
+            
+            //   System.out.println("Hello");
+            tablet.getCellular();
+            tablet.getOS();
+            tablet.getProcessor();
+            tablet.getScreenSize();
+            tablet.getStorage();
+            
+        }
+        
+        if (product.getClass() == Laptops.class) {
+
+            Laptops laptop = (Laptops) product;
+            // System.out.println("fuck");
+
+            laptop.getFlash();
+            laptop.getGraphicsCard();
+            laptop.getOS();
+            laptop.getProcessor();
+            laptop.getRam();
+            laptop.getRetina();
+            laptop.getStorage();
+
+        }
+
+        if (product.getClass() == Phones.class) {
+            Phones phone = (Phones) product;
+
+            phone.getOS();
+            phone.getProcessor();
+            phone.getScreenSize();
+            phone.getStorage();
+
+        }
+
+        if (product.getClass() == Acessories.class) {
+            Acessories acessory = (Acessories) product;
+
+        }
+
+        if (product.getClass() == OS.class) {
+
+            OS os = (OS) product;
+
+            os.getCodeSize();
+            os.getCodename();
+            os.getMinProcessor();
+            os.getMinRam();
+            os.getReleaseYear();
+            os.getSupported();
+            os.getVersion();
+
+        }
+
+        if (product.getClass() == PAAS.class) {
+
+            PAAS paas = (PAAS) product;
+
+        }
+
+        if (product.getClass() == OpenSource.class) {
+
+            OpenSource openSource = (OpenSource) product;
+
+            openSource.getContributors();
+            openSource.getIrc();
+            openSource.getProductLead();
+
+        }
+
+        if (product.getClass() == SAAS.class) {
+            SAAS saas = (SAAS) product;
+
+     //    saas.getMinServerCores(minServerCores);
+            //  saas.getSubscriptionYears(subscriptionYears);
+        }
+
+    }
+
+}
+
+
+package oops.project; 
+
+public interface RevenueDepartment {
+    
+    void calculateProfit();
+    void calculateLoss();
+    void calculateNetRevenues();
+    void calculateImplicitCosts();
+    void calculateExplicitCosts();
+    void calculateTotalEquity();
+    void calculateTotalShares();
+    void calculateNetIncome();
+    void calculateNetAssets();
+    void calculateAssetsBought();
+    void calculateAssetsSold();
+    void calculateNetSalaryPaid();
+    
+    
+}
+
+class Revenue implements RevenueDepartment
+{
+
+    private int profit;
+    private int loss;
+    private int NetRevenues;
+    private int implicitCosts;
+    private int explicitCosts;
+    private int totalEquity;
+    private int totalShares;
+    private int netIncome;
+    private int netAssets;
+    private int assetsBought;
+    private int assetsSold;
+    private int netSalaryPaid;
+    
+    
+    ProductList productList=ProductList.getInstance();
+    EmployeeList employeeList=EmployeeList.getInstance();
+
+    
+    @Override
+    public void calculateProfit() {
+        
+    profit=netIncome-netSalaryPaid;
+        
+    }
+
+    @Override
+    public void calculateLoss() {
+       
+    }
+
+    @Override
+    public void calculateNetRevenues() {
+      
+    }
+
+    @Override
+    public void calculateImplicitCosts() {
+        
+     for(Product product:productList)  
+     implicitCosts+=product.getInPrice();
+     
+    // for(Employee employee:employeeList)
+     //implicitCosts+=
+       
+    }
+
+    @Override
+    public void calculateExplicitCosts() {
+       
+    }
+
+    @Override
+    public void calculateTotalEquity() {
+       
+    }
+
+    @Override
+    public void calculateTotalShares() {
+        
+    }
+
+    @Override
+    public void calculateNetIncome() {
+       
+    }
+
+    @Override
+    public void calculateNetAssets() {
+        
+    }
+
+    @Override
+    public void calculateAssetsBought() {
+       
+    }
+
+    @Override
+    public void calculateAssetsSold() {
+       
+    }
+
+    @Override
+    public void calculateNetSalaryPaid() {
+       
+    }
+
+    public int getProfit() {
+        return profit;
+    }
+
+    public int getLoss() {
+        return loss;
+    }
+
+    public int getNetRevenues() {
+        return NetRevenues;
+    }
+
+    public int getImplicitCosts() {
+        return implicitCosts;
+    }
+
+    public int getExplicitCosts() {
+        return explicitCosts;
+    }
+
+    public int getTotalEquity() {
+        return totalEquity;
+    }
+
+    public int getTotalShares() {
+        return totalShares;
+    }
+
+    public int getNetIncome() {
+        return netIncome;
+    }
+
+    public int getNetAssets() {
+        return netAssets;
+    }
+
+    public int getAssetsBought() {
+        return assetsBought;
+    }
+
+    public int getAssetsSold() {
+        return assetsSold;
+    }
+
+    public int getNetSalaryPaid() {
+        return netSalaryPaid;
+    }
+
+}
+package oops.project;
+
+import java.util.List;
+
+
+public interface Software {
+    
+    
+    
+}
+
+class SAAS extends AbstractProduct implements Software
+{
+    private static final long serialVersionUID = 1L;
+    
+    
+    private int minServerCores;
+    private int subscriptionYears;
+    
+
+    public SAAS(String category, String ID, String name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
+        super(category, ID, name, price, model, features, volumesAvailable, totalVolumes, volumesSold, inPrice, outPrice);
+    }
+
+    SAAS() {
+        super(); ProductList.getInstance().addProduct(this);
+    }
+
+    public int getMinServerCores() {
+        return minServerCores;
+    }
+
+    public int getSubscriptionYears() {
+        return subscriptionYears;
+    }
+
+    public void setMinServerCores(int minServerCores) {
+        this.minServerCores = minServerCores;
+    }
+
+    public void setSubscriptionYears(int subscriptionYears) {
+        this.subscriptionYears = subscriptionYears;
+    }
+    
+    
+ 
+}
+
+class OS extends AbstractProduct implements Software
+{
+    private static final long serialVersionUID = 1L;
+    
+    private String codename;
+    private String minRam;
+    private String minProcessor;
+    private String codeSize;
+    private String version;
+    private String releaseYear;
+    private Boolean supported;
+
+    public OS(String category, String ID, String name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
+        super(category, ID, name, price, model, features, volumesAvailable, totalVolumes, volumesSold, inPrice, outPrice);
+    }
+
+   OS()
+   {
+   super(); ProductList.getInstance().addProduct(this);
+   }
+
+    public String getCodename() {
+        return codename;
+    }
+
+    public String getMinRam() {
+        return minRam;
+    }
+
+    public String getMinProcessor() {
+        return minProcessor;
+    }
+
+    public String getCodeSize() {
+        return codeSize;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public String getReleaseYear() {
+        return releaseYear;
+    }
+
+    public Boolean getSupported() {
+        return supported;
+    }
+
+    public void setCodename(String codename) {
+        this.codename = codename;
+    }
+
+    public void setMinRam(String minRam) {
+        this.minRam = minRam;
+    }
+
+    public void setMinProcessor(String minProcessor) {
+        this.minProcessor = minProcessor;
+    }
+
+    public void setCodeSize(String codeSize) {
+        this.codeSize = codeSize;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    public void setReleaseYear(String releaseYear) {
+        this.releaseYear = releaseYear;
+    }
+
+    public void setSupported(Boolean supported) {
+        this.supported = supported;
+    }
+
+
+}
+
+class OpenSource extends AbstractProduct implements Software
+{
+    private static final long serialVersionUID = 1L;
+
+    private List<String> contributors;
+    private String productLead;
+    private String irc;
+    
+    public OpenSource(String category, String ID, String name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
+        super(category, ID, name, price, model, features, volumesAvailable, totalVolumes, volumesSold, inPrice, outPrice);
+    }
+
+    OpenSource() {
+     super(); ProductList.getInstance().addProduct(this);
+    }
+
+    public List<String> getContributors() {
+        return contributors;
+    }
+
+    public String getProductLead() {
+        return productLead;
+    }
+
+    public String getIrc() {
+        return irc;
+    }
+
+    public void setContributors(List<String> contributors) {
+        this.contributors = contributors;
+    }
+
+    public void setProductLead(String productLead) {
+        this.productLead = productLead;
+    }
+
+    public void setIrc(String irc) {
+        this.irc = irc;
+    } 
+    
+
+}
+
+class PAAS extends AbstractProduct implements Software
+{
+    private static final long serialVersionUID = 1L;
+
+    public PAAS(String category, String ID, String name, int price, int model, List<String> features, int volumesAvailable, int totalVolumes, int volumesSold, int inPrice, int outPrice) {
+        super(category, ID, name, price, model, features, volumesAvailable, totalVolumes, volumesSold, inPrice, outPrice);
+    }
+
+    PAAS() {
+      super(); ProductList.getInstance().addProduct(this);
+    }
+
+   
+}
+package oops.project;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+public final class SoftwareEmployeePositions {
+   
+   List <String> softwareEmployeePositions;
+   List <Integer> softwareEmployeePositionsSalary;
+    
+  
+   private SoftwareEmployeePositions()
+           {
+              softwareEmployeePositions=new ArrayList<>(); 
+              softwareEmployeePositionsSalary=new ArrayList<>();
+              
+              softwareEmployeePositions.add("BeginnerSoftwareDeveloper");
+              softwareEmployeePositionsSalary.add(10000);
+              softwareEmployeePositions.add("DatabaseAdministrator");
+              softwareEmployeePositionsSalary.add(15000);
+              softwareEmployeePositions.add("PrimarySoftwareDeveloper");
+              softwareEmployeePositionsSalary.add(20000);
+              softwareEmployeePositions.add("PrincipalSoftwareArchitect");
+              softwareEmployeePositionsSalary.add(25000);
+              softwareEmployeePositions.add("SeniorSoftwareArchitect");
+              softwareEmployeePositionsSalary.add(30000);
+              softwareEmployeePositions.add("ProductLead");
+              softwareEmployeePositionsSalary.add(35000);
+              softwareEmployeePositions.add("DepartmentHead");                                  
+              softwareEmployeePositionsSalary.add(40000);
+
+           }
+   
+   
+      public static SoftwareEmployeePositions getInstance() {
+        return NewSoftwareEmployeePositionsHolder.INSTANCE;
+    }
+    
+    private static class NewSoftwareEmployeePositionsHolder {
+
+        private static final SoftwareEmployeePositions INSTANCE = new SoftwareEmployeePositions();
+    }
+   
+
+}
+
+
