@@ -1,44 +1,45 @@
 package oops.project;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import java.util.Stack;
 
 public class EmployeeOutput<T extends Employee> {
-    
-    void setOutput(T employee)
-    {
-    
-        
+
+    void getOutput(T employee) {
+
         BufferedReader dd = new BufferedReader(new InputStreamReader(System.in));
-        
-        try {
-            
-            
-            employee.setID(null);
-            employee.setName(null);
-            employee.setAddress(null);
-            employee.setDOB(null);
-            employee.setPhoneNo(null);
-            
-            
-            StringTokenizer st= new StringTokenizer(dd.readLine());
-            
-            while(st.hasMoreTokens())
-                employee.setPostionsHeld(st.nextToken());
-        } catch (IOException ex) {
-            Logger.getLogger(EmployeeInput.class.getName()).log(Level.SEVERE, null, ex);
+
+        employee.getID();
+        employee.getName();
+        employee.getAddress();
+        employee.getDOB();
+        employee.getPhoneNo();
+
+        Stack<String> employeePositions = employee.getPositionsHeld();
+
+        for (String s : employeePositions) {
+            System.out.println(s);
         }
+
+        if (employee.getClass() == SoftwareEmployee.class) {
+
+            SoftwareEmployee softwareEmployee=(SoftwareEmployee) employee;
             
             
+        }
+
+        if (employee.getClass() == HardwareEmployee.class) {
+
+            HardwareEmployee hardwareEmployee=(HardwareEmployee) employee;
             
-      
-       
+            
+        }
+
+        if (employee.getClass() == ManagementEmployee.class) {
+            
+            ManagementEmployee mangementEmployee=(ManagementEmployee) employee;
+
+        }
     }
 }
-    
-    

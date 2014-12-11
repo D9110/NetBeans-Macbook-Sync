@@ -38,8 +38,8 @@ public class Client {
         
         System.out.println(t.getVolumesAvailable());
         
-//      ProductInput<Tablets> ps = new ProductInput<>();
-//      ps.getInput(t);
+    ProductInput<Tablets> ps = new ProductInput<>();
+      ps.getInput(t);
       
       
       

@@ -59,6 +59,13 @@ public interface Employee extends Serializable {
 
     public AbstractEmployee() {
         
+        ID = "'";
+        name = "";
+        DOB = "";
+        Address = "";
+        phoneNo = "";
+        
+        
        positionsHeld=new Stack<>();
  
     }

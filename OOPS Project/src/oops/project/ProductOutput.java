@@ -1,79 +1,71 @@
 package oops.project;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
 
 public final class ProductOutput<T extends Product> {
 
 
-    void getInput(T product) {
+    void getOutput(T product) {
 
         BufferedReader dd = new BufferedReader(new InputStreamReader(System.in));
 
-        try {
-
-            System.out.println("Product Details");
-
-            product.setName(dd.readLine());
-            product.setID(dd.readLine());
-            product.setCategory(dd.readLine());
-            product.setModel(Integer.parseInt(dd.readLine()));
-
-            StringTokenizer st = new StringTokenizer(dd.readLine());
-
-            while (st.hasMoreTokens()) {
-                product.addFeatures(st.nextToken());
-            }
-
-            product.setInPrice(Integer.parseInt(dd.readLine()));
-            product.setPrice(Integer.parseInt(dd.readLine()));
-            product.setOutPrice(Integer.parseInt(dd.readLine()));
-
-            product.setVolumesSold(Integer.parseInt(dd.readLine()));
-            product.setVolumesAvailable(Integer.parseInt(dd.readLine()));
-            product.setTotalVolumes(Integer.parseInt(dd.readLine()));
-
-            if (product.getClass() == Tablets.class) {
-                Tablets tablet = (Tablets) product;
-
-             //   System.out.println("Hello");
-                tablet.setCellular(Boolean.TRUE);
-                tablet.setOS(null);
-                tablet.setProcessor(null);
-                tablet.setScreenSize(null);
-                tablet.setStorage(null);
-
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(ProductInput.class.getName()).log(Level.SEVERE, null, ex);
+        System.out.println("Product Details");
+        System.out.println(product.getName());
+        System.out.println(product.getID());
+        System.out.println(product.getCategory());
+        System.out.println(product.getModel());
+        
+      List<String> productFeatures= product.getFeatures();
+        
+      
+      for(String s:productFeatures)
+      {
+        System.out.println(s);
+      }
+      
+      
+        System.out.println(product.getInPrice());
+        System.out.println(product.getPrice());
+        System.out.println(product.getOutPrice());
+        System.out.println(product.getVolumesSold());
+        System.out.println(product.getVolumesAvailable());
+        System.out.println(product.getTotalVolumes());
+        if (product.getClass() == Tablets.class) {
+            Tablets tablet = (Tablets) product;
+            
+            //   System.out.println("Hello");
+            System.out.println(tablet.getCellular());
+            System.out.println(tablet.getOS());
+            System.out.println(tablet.getProcessor());
+            System.out.println(tablet.getScreenSize());
+            System.out.println(tablet.getStorage());
+            
         }
-
+        
         if (product.getClass() == Laptops.class) {
 
             Laptops laptop = (Laptops) product;
             // System.out.println("fuck");
 
-            laptop.setFlash(Boolean.TRUE);
-            laptop.setGraphicsCard(null);
-            laptop.setOS(null);
-            laptop.setProcessor(null);
-            laptop.setRam(null);
-            laptop.setRetina(Boolean.TRUE);
-            laptop.setStorage(null);
+            System.out.println(laptop.getFlash());
+            System.out.println(laptop.getGraphicsCard());
+            System.out.println(laptop.getOS());
+            System.out.println(laptop.getProcessor());
+            System.out.println(laptop.getRam());
+            System.out.println(laptop.getRetina());
+            System.out.println(laptop.getStorage());
 
         }
 
         if (product.getClass() == Phones.class) {
             Phones phone = (Phones) product;
 
-            phone.setOS(null);
-            phone.setProcessor(null);
-            phone.setScreenSize(null);
-            phone.setStorage(null);
+            System.out.println(phone.getOS());
+            System.out.println(phone.getProcessor());
+            System.out.println(phone.getScreenSize());
+            System.out.println(phone.getStorage());
 
         }
 
@@ -86,13 +78,13 @@ public final class ProductOutput<T extends Product> {
 
             OS os = (OS) product;
 
-            os.setCodeSize(null);
-            os.setCodename(null);
-            os.setMinProcessor(null);
-            os.setMinRam(null);
-            os.setReleaseYear(null);
-            os.setSupported(Boolean.TRUE);
-            os.setVersion(null);
+            System.out.println(os.getCodeSize());
+            System.out.println(os.getCodename());
+            System.out.println(os.getMinProcessor());
+            System.out.println(os.getMinRam());
+            System.out.println(os.getReleaseYear());
+            System.out.println(os.getSupported());
+            System.out.println(os.getVersion());
 
         }
 
@@ -106,17 +98,17 @@ public final class ProductOutput<T extends Product> {
 
             OpenSource openSource = (OpenSource) product;
 
-            openSource.setContributors(null);
-            openSource.setIrc(null);
-            openSource.setProductLead(null);
+            System.out.println(openSource.getContributors());
+            System.out.println(openSource.getIrc());
+            System.out.println(openSource.getProductLead());
 
         }
 
         if (product.getClass() == SAAS.class) {
             SAAS saas = (SAAS) product;
 
-     //    saas.setMinServerCores(minServerCores);
-            //  saas.setSubscriptionYears(subscriptionYears);
+         System.out.println(saas.getMinServerCores());
+         System.out.println(saas.getSubscriptionYears());
         }
 
     }

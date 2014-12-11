@@ -1,6 +1,7 @@
 
 package oops.project;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -25,6 +26,9 @@ class SAAS extends AbstractProduct implements Software
 
     SAAS() {
         super(); ProductList.getInstance().addProduct(this);
+         subscriptionYears=0; 
+         minServerCores=0;
+        
     }
 
     public int getMinServerCores() {
@@ -66,6 +70,13 @@ class OS extends AbstractProduct implements Software
    OS()
    {
    super(); ProductList.getInstance().addProduct(this);
+   minRam="";
+    minProcessor="";
+    codeSize="";
+    version="";
+    releaseYear="";
+    supported=false;
+   
    }
 
     public String getCodename() {
@@ -141,6 +152,10 @@ class OpenSource extends AbstractProduct implements Software
 
     OpenSource() {
      super(); ProductList.getInstance().addProduct(this);
+     contributors=new ArrayList<>();
+     
+      irc="";
+      productLead="";
     }
 
     public List<String> getContributors() {

@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 public final class ProductInput<T extends Product> {
 
-    void getInput(T product) {
+    void getInput(T product) throws Exception {
 
         BufferedReader dd = new BufferedReader(new InputStreamReader(System.in));
 
@@ -114,8 +114,8 @@ public final class ProductInput<T extends Product> {
         if (product.getClass() == SAAS.class) {
             SAAS saas = (SAAS) product;
 
-            //    saas.setMinServerCores(minServerCores);
-            //  saas.setSubscriptionYears(subscriptionYears);
+              saas.setMinServerCores(0);
+             saas.setSubscriptionYears(0);
         }
 
     }

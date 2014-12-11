@@ -167,7 +167,18 @@ abstract class AbstractProduct implements Product
     }
 
     public AbstractProduct() {
-      features= new ArrayList<>(); 
+        
+        ID="";
+	name="";
+	price=0;
+	model=0;
+	volumesAvailable=0;	
+	totalVolumes=0;
+	volumesSold=0;
+	inPrice=0;
+	outPrice=0;  
+        
+        features= new ArrayList<>(); 
      
     }
 

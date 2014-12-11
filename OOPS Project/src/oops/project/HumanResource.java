@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public interface HR {
+public interface HumanResource {
 
     void takeInterviews(List<Employee> employeeList);
 
     void doPromotions(List<Employee> employeeList, List<Boolean> promotionStatus);
 
-    void setEmployeeInfo(Employee employee, HumanResource.EmployeeInfo... employeeInfo);
+    void setEmployeeInfo(Employee employee, AbstractHumanResource.EmployeeInfo... employeeInfo);
 
-    void getEmployeeInfo(Employee employee, HumanResource.EmployeeInfo... employeeInfo);
+    void getEmployeeInfo(Employee employee, AbstractHumanResource.EmployeeInfo... employeeInfo);
 
 }
 
-abstract class HumanResource implements HR {
+abstract class AbstractHumanResource implements HumanResource {
 
     @Override
     public void takeInterviews(List<Employee> employeeList) {

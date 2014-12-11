@@ -28,6 +28,12 @@ class Tablets extends AbstractProduct implements Hardware {
     Tablets() {
         super();
         ProductList.getInstance().addProduct(this);
+        
+    screenSize="";
+    processor="";
+    OS="";
+    storage="";
+    cellular=false;
     }
 
     public String getScreenSize() {
@@ -124,9 +130,7 @@ class Phones extends AbstractProduct implements Hardware {
 
     private static final long serialVersionUID = 1L;
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
+  
 
     private String screenSize;
     private String processor;
@@ -140,7 +144,14 @@ class Phones extends AbstractProduct implements Hardware {
     Phones() {
         super();
         ProductList.getInstance().addProduct(this);
+   
+         screenSize="";
+    processor="";
+    OS="";   
+    storage="";
+    
     }
+    
 
     public String getScreenSize() {
         return screenSize;
@@ -239,6 +250,14 @@ class Laptops extends AbstractProduct implements Hardware {
     Laptops() {
         super();
         ProductList.getInstance().addProduct(this);
+        
+        
+        OS="";
+     graphicsCard="";
+     ram="";
+     storage="";
+     flash=false;
+     retina=false;
     }
 
     public String getProcessor() {
