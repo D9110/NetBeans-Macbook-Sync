@@ -1,11 +1,13 @@
 
 package oops.project;
 
-public class Acquisitions {
+public interface Acquisitions {
     
-    //buy company
-    //get employee
-    //get hardware
+    void buyCompany();
+    void getEmployee();
+    void getHardware();
     
     
 }
+
+
