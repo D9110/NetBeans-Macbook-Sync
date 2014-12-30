@@ -1,0 +1,258 @@
+/**
+ * Copyright 2014 Red Hat, Inc. and/or its affiliates.
+ *
+ * Licensed under the Eclipse Public License version 1.0, available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ */
+
+package org.jboss.forge.addon.devtools.java;
+
+import static org.junit.Assert.assertEquals;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.forge.addon.parser.xml.resources.XMLResource;
+import org.jboss.forge.addon.resource.FileResource;
+import org.jboss.forge.addon.resource.Resource;
+import org.jboss.forge.addon.resource.ResourceFactory;
+import org.jboss.forge.addon.ui.controller.CommandController;
+import org.jboss.forge.addon.ui.test.UITestHarness;
+import org.jboss.forge.arquillian.AddonDependency;
+import org.jboss.forge.arquillian.Dependencies;
+import org.jboss.forge.arquillian.archive.ForgeArchive;
+import org.jboss.forge.furnace.repositories.AddonDependencyEntry;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.FileAsset;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+
+@RunWith(Arquillian.class)
+public class JavaFormatSourcesCommandTest
+{
+   @Deployment
+   @Dependencies({
+            @AddonDependency(name = "org.jboss.forge.addon:parser-java"),
+            @AddonDependency(name = "org.jboss.forge.addon:dev-tools-java"),
+            @AddonDependency(name = "org.jboss.forge.addon:ui-test-harness"),
+            @AddonDependency(name = "org.jboss.forge.addon:projects"),
+            @AddonDependency(name = "org.jboss.forge.addon:maven"),
+            @AddonDependency(name = "org.jboss.forge.furnace.container:cdi")
+   })
+   public static ForgeArchive getDeployment()
+   {
+
+      ForgeArchive archive = ShrinkWrap
+               .create(ForgeArchive.class)
+               .addBeansXML()
+               .add(new FileAsset(new File(
+                        "src/test/resources/org/jboss/forge/addon/devtools/java/resources/FormattedSource.java")),
+                        "org/jboss/forge/addon/devtools/java/FormattedSource.java")
+               .add(new FileAsset(new File(
+                        "src/test/resources/org/jboss/forge/addon/devtools/java/resources/UnformattedSource.java")),
+                        "org/jboss/forge/addon/devtools/java/UnformattedSource.java")
+               .add(new FileAsset(new File(
+                        "src/test/resources/org/jboss/forge/addon/devtools/java/resources/UnformattedSourceFolder")),
+                        "org/jboss/forge/addon/devtools/java/UnformattedSource.java")
+               .add(new FileAsset(new File(
+                        "src/test/resources/org/jboss/forge/addon/devtools/java/resources/FormatProfile.xml")),
+                        "org/jboss/forge/addon/devtools/java/FormatProfile.xml")
+               .addAsAddonDependencies(
+                        AddonDependencyEntry.create("org.jboss.forge.furnace.container:cdi"),
+                        AddonDependencyEntry.create("org.jboss.forge.addon:dev-tools-java"),
+                        AddonDependencyEntry.create("org.jboss.forge.addon:maven"),
+                        AddonDependencyEntry.create("org.jboss.forge.addon:ui-test-harness"),
+                        AddonDependencyEntry.create("org.jboss.forge.addon:resources")
+               );
+      return archive;
+   }
+
+   @Inject
+   private ResourceFactory resourceFactory;
+
+   @Inject
+   private UITestHarness testHarness;
+
+   private CommandController commandController;
+
+   @Before
+   public void setup() throws Exception
+   {
+      commandController = testHarness.createCommandController(JavaFormatSourcesCommand.class);
+   }
+
+   @Test
+   public void testFileFormatting() throws Exception
+   {
+
+      File formattedFile = File.createTempFile("FormattedSource", ".java");
+      formattedFile.deleteOnExit();
+      Assert.assertNotNull(formattedFile);
+
+      File unformattedFile = File.createTempFile("UnformattedSource", ".java");
+      unformattedFile.deleteOnExit();
+      Assert.assertNotNull(unformattedFile);
+
+      File profile = File.createTempFile("FormatProfile", ".xml");
+      profile.deleteOnExit();
+      Assert.assertNotNull(profile);
+
+      // Loading the sample formatted source
+      Resource<File> unreifiedFormattedSource = resourceFactory.create(formattedFile);
+      FileResource<?> formattedSource = unreifiedFormattedSource.reify(FileResource.class);
+
+      Assert.assertNotNull(getClass().getResource("FormattedSource.java"));
+      Assert.assertNotNull(getClass().getResource("FormattedSource.java").openStream());
+
+      formattedSource.setContents((getClass().getResource("FormattedSource.java").openStream()));
+
+      // Loading the temporary unformatted source from the sample unformatted source
+      Resource<File> unreifiedTempUnformattedSource = resourceFactory.create(unformattedFile);
+      FileResource<?> tempUnformattedSource = unreifiedTempUnformattedSource.reify(FileResource.class);
+
+      Assert.assertNotNull(getClass().getResource("UnformattedSource.java"));
+      Assert.assertNotNull(getClass().getResource("UnformattedSource.java").openStream());
+
+      tempUnformattedSource.setContents((getClass().getResource("UnformattedSource.java").openStream()));
+
+      // Loading the sample format profile
+      Resource<File> unreifiedProfile = resourceFactory.create(profile);
+      XMLResource profileXML = unreifiedProfile.reify(XMLResource.class);
+
+      Assert.assertNotNull(getClass().getResource("FormatProfile.xml"));
+      Assert.assertNotNull(getClass().getResource("FormatProfile.xml").openStream());
+
+      profileXML.setContents((getClass().getResource("FormatProfile.xml").openStream()));
+
+      commandController.initialize();
+      commandController.setValueFor("profile", profileXML);
+
+      commandController.setValueFor("sources", tempUnformattedSource);
+      commandController.execute();
+
+      // testing that the formatted source and unformatted source after format are equal
+     Assert.assertEquals(formattedSource.getContents(), tempUnformattedSource.getContents());
+
+   }
+   
+   
+   //create resource directory 
+   //create temp copy of resource dir
+   //command execute resource dir
+   //recursively visit that dir
+   //load individual java files into FileResources
+   //asert string contents
+   
+   @Test
+   public void testFolderFormatting() throws Exception
+   {
+
+      File formattedFile = File.createTempFile("FormattedSource", ".java");
+      formattedFile.deleteOnExit();
+      Resource<File> unreifiedFormattedSource = resourceFactory.create(formattedFile);
+      FileResource<?> formattedSource = unreifiedFormattedSource.reify(FileResource.class);
+      formattedSource.setContents((getClass().getResource("FormattedSource.java").openStream()));
+      
+      
+      Path unformattedFolderPath = Files.createTempDirectory("TempUnformattedSourcesFolder");
+      unformattedFolderPath.toFile().deleteOnExit();
+
+      Resource<File> unreifiedFormattedFolder = resourceFactory.create(unformattedFolderPath.toFile());
+      FileResource<?> unformattedfolder = unreifiedFormattedFolder.reify(FileResource.class);
+
+      unformattedfolder.setContents((getClass().getResource("UnformattedSourceFolder").openStream()));
+
+      File profile = File.createTempFile("FormatProfile", ".xml");
+      profile.deleteOnExit();
+      
+      Resource<File> unreifiedProfile = resourceFactory.create(profile);
+      XMLResource profileXML = unreifiedProfile.reify(XMLResource.class);
+      profileXML.setContents((getClass().getResource("FormatProfile.xml").openStream()));
+  
+      List<FileResource<?>> newFileResourceList = new ArrayList<>();
+
+      List<Resource<?>> resourceList = unformattedfolder.listResources();
+
+      for (Resource<?> resource : resourceList)
+      {
+
+         newFileResourceList.add(resource.reify(FileResource.class));
+                  
+         if (resource.getName().endsWith(".java"))
+         {
+            Assert.assertEquals(formattedSource.getContents(), resource.getContents());
+        
+
+         }
+
+      }
+      
+//      FileResource<?> fr;
+//       fr.createTempResource();
+//       
+//       
+//           
+       
+//     
+//     boolean dirFlag = false;
+//
+//  // create File object
+//  File stockDir = new File("d://Stock/ stockDir ");
+//
+//  try {
+//     dirFlag = stockDir.mkdir();
+//  } catch (SecurityException Se) {
+//  System.out.println("Error while creating directory in Java:" + Se);
+//  }
+//   
+
+
+      
+   }
+   
+   
+   public void copyDirectory(File sourceLocation , File targetLocation)
+   throws IOException {
+       
+       if (sourceLocation.isDirectory()) {
+           if (!targetLocation.exists()) {
+               targetLocation.mkdir();
+           }
+           
+           String[] children = sourceLocation.list();
+           for (int i=0; i<children.length; i++) {
+               copyDirectory(new File(sourceLocation, children[i]),
+                       new File(targetLocation, children[i]));
+           }
+       } else {
+           
+           InputStream in = new FileInputStream(sourceLocation);
+           OutputStream out = new FileOutputStream(targetLocation);
+           
+           // Copy the bits from instream to outstream
+           byte[] buf = new byte[1024];
+           int len;
+           while ((len = in.read(buf)) > 0) {
+               out.write(buf, 0, len);
+           }
+           in.close();
+           out.close();
+       }
+   }
+
+}
