@@ -68,7 +68,7 @@ public class JavaFormatSourcesCommandTest
                         "org/jboss/forge/addon/devtools/java/UnformattedSource.java")
                .add(new FileAsset(new File(
                         "src/test/resources/org/jboss/forge/addon/devtools/java/resources/UnformattedSourceFolder")),
-                        "org/jboss/forge/addon/devtools/java/UnformattedSource.java")
+                        "org/jboss/forge/addon/devtools/java/UnformattedSourceFolder")
                .add(new FileAsset(new File(
                         "src/test/resources/org/jboss/forge/addon/devtools/java/resources/FormatProfile.xml")),
                         "org/jboss/forge/addon/devtools/java/FormatProfile.xml")
